@@ -27,8 +27,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     scannerState = kReadyToScan;
+    
+    UIImage *image = [[UIImage imageNamed:@"Barcode"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_scanButton setImage:image forState:UIControlStateNormal];
+    [_scanButton setTitleColor:_scanButton.tintColor forState:UIControlStateNormal];
+    
+    CGFloat spacing = 6.0;
+    CGSize imageSize = _scanButton.imageView.frame.size;
+    _scanButton.titleEdgeInsets = UIEdgeInsetsMake(
+                                              0.0, - imageSize.width, - (imageSize.height + spacing), 0.0);
+    
+    // raise the image and push it right so it appears centered
+    //  above the text
+    CGSize titleSize = _scanButton.titleLabel.frame.size;
+    _scanButton.imageEdgeInsets = UIEdgeInsetsMake(
+                                              - (titleSize.height + spacing), 0.0, 0.0, - titleSize.width);
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,12 +62,16 @@
         NSLog(@"Detected barcode: %@", barCode);
         if (![self.presentedViewController isBeingDismissed]){
             [self dismissViewControllerAnimated:YES completion:^{
-                _barcodeLabel.text = _currentBarCode;
-                scannerState = kReadyToScan;
-                [self showProductInfoForBarcode:barCode];
+                [self detectedBarCode:barCode];
             }];
         }
     }
+}
+
+- (void)detectedBarCode:(NSString*)barCode{
+    _barcodeLabel.text = _currentBarCode;
+    scannerState = kReadyToScan;
+    [self showProductInfoForBarcode:barCode];
 }
 
 - (IBAction)scanButtonPressed:(id)sender {
@@ -60,6 +82,10 @@
     [self presentViewController:hhbvc animated:YES completion:^{
         //code
     }];
+}
+
+- (IBAction)testBarCodeButtonPressed:(id)sender {
+    [self detectedBarCode:@"0012345678905"];
 }
 
 - (void)showProductInfoForBarcode:(NSString*)barcode{

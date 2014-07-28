@@ -19,10 +19,14 @@ typedef enum {
     ScannerState scannerState;
 }
 
+- (IBAction)scanButtonPressed:(id)sender;
+- (IBAction)testBarCodeButtonPressed:(id)sender;
+
+
+
 @property (nonatomic) NSString *currentBarCode;
 
-- (IBAction)scanButtonPressed:(id)sender;
-
+@property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UILabel *barcodeLabel;
 
 @end

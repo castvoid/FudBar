@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -16,35 +17,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDw-QC-2Yd">
-                                <rect key="frame" x="205" y="121" width="70" height="238"/>
-                                <state key="normal" title="New Scan">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="scanButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7kB-6a-Q0z"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiG-97-nes">
                                 <rect key="frame" x="0.0" y="459" width="480" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="7BI-lb-fiW"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7l-bA-dCB">
+                                <rect key="frame" x="114" y="189" width="253" height="102"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <state key="normal" title="Scan Barcode" image="Barcode">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scanButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="AaM-Vn-NEn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvO-qp-jkJ">
+                                <rect key="frame" x="15" y="421" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="TDT-bf-gtL"/>
+                                    <constraint firstAttribute="height" constant="30" id="lpK-sQ-OUP"/>
+                                </constraints>
+                                <state key="normal" title="Use Test barcode">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testBarCodeButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lsl-F4-NDe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qiG-97-nes" firstAttribute="top" secondItem="rDw-QC-2Yd" secondAttribute="bottom" constant="100" id="25l-6M-WvY"/>
-                            <constraint firstAttribute="centerX" secondItem="rDw-QC-2Yd" secondAttribute="centerX" id="5nc-tM-eaa"/>
-                            <constraint firstItem="qiG-97-nes" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="GeL-3N-fTk"/>
-                            <constraint firstAttribute="centerY" secondItem="rDw-QC-2Yd" secondAttribute="centerY" id="IhD-Oe-CPx"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qiG-97-nes" secondAttribute="bottom" id="UG5-pl-234"/>
-                            <constraint firstAttribute="trailing" secondItem="qiG-97-nes" secondAttribute="trailing" id="oDt-Xc-7l3"/>
+                            <constraint firstItem="qiG-97-nes" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Mk0-37-4YX"/>
+                            <constraint firstItem="qiG-97-nes" firstAttribute="top" secondItem="uvO-qp-jkJ" secondAttribute="bottom" constant="8" id="SYX-y8-7gz"/>
+                            <constraint firstAttribute="centerY" secondItem="X7l-bA-dCB" secondAttribute="centerY" id="UzF-Q0-k53"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qiG-97-nes" secondAttribute="bottom" id="dAc-hc-gWa"/>
+                            <constraint firstItem="uvO-qp-jkJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="npf-Wy-JLA"/>
+                            <constraint firstAttribute="trailing" secondItem="qiG-97-nes" secondAttribute="trailing" id="rVQ-ke-hhs"/>
+                            <constraint firstAttribute="centerX" secondItem="X7l-bA-dCB" secondAttribute="centerX" id="wXx-5Q-R2Q"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="barcodeLabel" destination="qiG-97-nes" id="9Am-LB-GAX"/>
+                        <outlet property="scanButton" destination="X7l-bA-dCB" id="Fqf-eO-Dde"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -58,12 +78,82 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" id="Bjd-q1-5pB">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="title" id="DHv-nP-1H5">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHv-nP-1H5" id="Wfe-Cg-HLc">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXp-fd-EGT">
+                                            <rect key="frame" x="0.0" y="10" width="480" height="23"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="DXp-fd-EGT" firstAttribute="leading" secondItem="Wfe-Cg-HLc" secondAttribute="leading" id="08J-1M-vHk"/>
+                                        <constraint firstAttribute="trailing" secondItem="DXp-fd-EGT" secondAttribute="trailing" id="dFT-jH-tKF"/>
+                                        <constraint firstItem="DXp-fd-EGT" firstAttribute="top" secondItem="Wfe-Cg-HLc" secondAttribute="top" constant="10" id="i08-2s-iJ0"/>
+                                        <constraint firstAttribute="bottom" secondItem="DXp-fd-EGT" secondAttribute="bottom" constant="10" id="vYR-0s-z08"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="subtitle" id="d1p-DC-19l">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d1p-DC-19l" id="Tbh-Rl-DxR">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="subtitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KF6-Qu-f8X">
+                                            <rect key="frame" x="0.0" y="5" width="480" height="33"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="KF6-Qu-f8X" secondAttribute="bottom" constant="5" id="Qq1-c4-dYq"/>
+                                        <constraint firstAttribute="trailing" secondItem="KF6-Qu-f8X" secondAttribute="trailing" id="ULv-jT-jp0"/>
+                                        <constraint firstItem="KF6-Qu-f8X" firstAttribute="top" secondItem="Tbh-Rl-DxR" secondAttribute="top" constant="5" id="kvN-Kx-ex0"/>
+                                        <constraint firstItem="KF6-Qu-f8X" firstAttribute="leading" secondItem="Tbh-Rl-DxR" secondAttribute="leading" id="yFD-xJ-55s"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="rightDetail" textLabel="NgS-vO-HQh" detailTextLabel="faV-V0-SAp" style="IBUITableViewCellStyleValue1" id="6kK-hy-ffN">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6kK-hy-ffN" id="O49-tq-e9Z">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NgS-vO-HQh">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="faV-V0-SAp">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="image" id="Bjd-q1-5pB">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bjd-q1-5pB" id="GwB-II-CBc">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eLY-ub-nx3">
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="43"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eLY-ub-nx3" firstAttribute="top" secondItem="GwB-II-CBc" secondAttribute="top" id="4AA-Nz-XIk"/>
+                                        <constraint firstAttribute="bottom" secondItem="eLY-ub-nx3" secondAttribute="bottom" id="5cj-kS-Ghc"/>
+                                        <constraint firstItem="eLY-ub-nx3" firstAttribute="leading" secondItem="GwB-II-CBc" secondAttribute="leading" id="5n9-Le-vvP"/>
+                                        <constraint firstAttribute="trailing" secondItem="eLY-ub-nx3" secondAttribute="trailing" id="Jt5-Yj-Ttx"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -75,7 +165,10 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NiA-wV-AMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711" y="141"/>
+            <point key="canvasLocation" x="1095" y="144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Barcode" width="150" height="102"/>
+    </resources>
 </document>

@@ -14,15 +14,16 @@
 #import "HHBarCodeViewController.h"
 
 @interface HHBarCodeViewController () <AVCaptureMetadataOutputObjectsDelegate>
-    @property (nonatomic) AVCaptureSession *session;
-    @property (nonatomic) AVCaptureDevice *device;
-    @property (nonatomic) AVCaptureDeviceInput *input;
-    @property (nonatomic) AVCaptureMetadataOutput *output;
-    @property (nonatomic) AVCaptureVideoPreviewLayer *prevLayer;
 
-    @property (nonatomic) UIView *highlightView;
-    @property (nonatomic) UIButton *cancelButton;
-    @property (nonatomic) UIButton *flashButton;
+@property (nonatomic) AVCaptureSession *session;
+@property (nonatomic) AVCaptureDevice *device;
+@property (nonatomic) AVCaptureDeviceInput *input;
+@property (nonatomic) AVCaptureMetadataOutput *output;
+@property (nonatomic) AVCaptureVideoPreviewLayer *prevLayer;
+
+@property (nonatomic) UIView *highlightView;
+@property (nonatomic) UIButton *cancelButton;
+@property (nonatomic) UIButton *flashButton;
 
 @property (nonatomic) UIColor *labelBackgroundColor;
 @property (nonatomic) UIColor *labelTextColor;
@@ -33,7 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.labelBackgroundColor = [UIColor colorWithWhite:0.15 alpha:0.65];
     self.labelTextColor = [UIColor whiteColor];
     
@@ -54,27 +55,27 @@
     self.session = [[AVCaptureSession alloc] init];
     self.device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     NSError *error = nil;
-
+    
     self.input = [AVCaptureDeviceInput deviceInputWithDevice:self.device error:&error];
     if (self.input) {
         [self.session addInput:self.input];
     } else {
         NSLog(@"Error: %@", error);
     }
-
+    
     self.output = [[AVCaptureMetadataOutput alloc] init];
     [self.output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
     [self.session addOutput:self.output];
-
+    
     self.output.metadataObjectTypes = [self.output availableMetadataObjectTypes];
-
+    
     self.prevLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
     self.prevLayer.frame = self.view.bounds;
     self.prevLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:self.prevLayer];
-
+    
     [self.session startRunning];
-
+    
     [self.view bringSubviewToFront:self.highlightView];
     [self.view bringSubviewToFront:self.cancelButton];
     
@@ -154,7 +155,7 @@
                               AVMetadataObjectTypePDF417Code,
                               AVMetadataObjectTypeQRCode,
                               AVMetadataObjectTypeAztecCode];
-
+    
     for (AVMetadataObject *metadata in metadataObjects) {
         for (NSString *type in barCodeTypes) {
             if ([metadata.type isEqualToString:type]) {
@@ -164,7 +165,7 @@
                 break;
             }
         }
-
+        
         if (detectionString != nil) {
             if (self.delegate) {
                 [self.delegate barCodeViewController:self didDetectBarCode:detectionString];
@@ -175,7 +176,7 @@
             break;
         }
     }
-
+    
     self.highlightView.frame = highlightViewRect;
 }
 

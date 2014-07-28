@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */; };
 		4A8722AC19868435001C544A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AB19868435001C544A /* main.m */; };
 		4A8722AF19868435001C544A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AE19868435001C544A /* AppDelegate.m */; };
 		4A8722B219868435001C544A /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722B119868435001C544A /* MainViewController.m */; };
@@ -26,6 +27,7 @@
 		4A8722E3198696E9001C544A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E2198696E9001C544A /* Security.framework */; };
 		4A8722E5198696EF001C544A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E4198696EF001C544A /* StoreKit.framework */; };
 		4A8722E7198696FB001C544A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E6198696FB001C544A /* SystemConfiguration.framework */; };
+		4A95700D1986ECC500B10D7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A95700C1986ECC500B10D7F /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonWithTextUnderImage.h; sourceTree = "<group>"; };
+		4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithTextUnderImage.m; sourceTree = "<group>"; };
 		4A8722A619868435001C544A /* FudBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8722AA19868435001C544A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A8722AB19868435001C544A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -66,6 +70,7 @@
 		4A8722E2198696E9001C544A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4A8722E4198696EF001C544A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A8722E6198696FB001C544A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4A95700C1986ECC500B10D7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +140,9 @@
 		4A8722A919868435001C544A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */,
+				4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */,
+				4A95700C1986ECC500B10D7F /* Settings.bundle */,
 				4A8722D219869696001C544A /* Parse.framework */,
 				4A8722AA19868435001C544A /* Info.plist */,
 				4A8722AB19868435001C544A /* main.m */,
@@ -227,6 +235,7 @@
 				TargetAttributes = {
 					4A8722A519868435001C544A = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = X9V6223Q5A;
 					};
 					4A8722BB19868435001C544A = {
 						CreatedOnToolsVersion = 6.0;
@@ -259,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A8722B519868435001C544A /* Main.storyboard in Resources */,
+				4A95700D1986ECC500B10D7F /* Settings.bundle in Resources */,
 				4A8722B719868435001C544A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A8722B219868435001C544A /* MainViewController.m in Sources */,
+				4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */,
 				4A8722AF19868435001C544A /* AppDelegate.m in Sources */,
 				4A8722AC19868435001C544A /* main.m in Sources */,
 				4A8722CD19868798001C544A /* HHBarCodeViewController.m in Sources */,
@@ -396,14 +407,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FudBar",
 				);
 				INFOPLIST_FILE = FudBar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -412,14 +426,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FudBar",
 				);
 				INFOPLIST_FILE = FudBar/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

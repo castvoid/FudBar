@@ -18,7 +18,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        
+        _foodProduct = nil;
     }
     return self;
 }
@@ -27,27 +27,7 @@
 {
     [super viewDidLoad];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"FoodProduct"];
-    [query whereKey:@"barCodeNumber" equalTo:_barcode];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", (unsigned long)objects.count);
-            // Do something with the found objects
-            if ([objects count] > 0){
-                PFObject *object = objects[0];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Product identified" message:object[@"productName"] delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-                [alert show];
-            }else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No product identified" message:@"Try something else" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-                [alert show];
-            }
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+    [self loadFoodProductForBarcode:_barcode];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -62,30 +42,131 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Data management
+
+- (void)loadFoodProductForBarcode:(NSString*)barcode{
+    PFQuery *query = [PFQuery queryWithClassName:@"FoodProduct"];
+    [query whereKey:@"barCodeNumber" equalTo:barcode];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Query for barcode %@ returned %lu results.", barcode,(unsigned long)objects.count);
+            // Do something with the found objects
+            if ([objects count] > 0){
+                PFObject *object = objects[0];
+                [self updateTableWithFoodProduct:object];
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No product identified" message:@"Try something else" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+                alert.tag = 1;
+                [alert show];
+            }
+        } else {
+            // Log details of the failure
+            NSLog(@"Error loading food product w/ barcode %@: %@ %@", barcode, error, [error userInfo]);
+        }
+    }];
+    
+    
+}
+
+- (void)updateTableWithFoodProduct: (PFObject*) object{
+    _foodProduct = object;
+    [[self tableView] reloadData];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 1) { // If it is "no product identified"
+        [self dismiss];
+    }else{
+        
+    }
+}
+
+- (void) dismiss {
+    if (self.navigationController) {
+        if ([self.navigationController.viewControllers lastObject] == self) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+    else if (self.presentingViewController) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 #pragma mark - Table view data sonurce
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return !_foodProduct ? 0 : 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return 0;
+    int ret[] = {2,6,1};
+    return ret[section];
 }
 
-/*
- - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
- {
- UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
- 
- // Configure the cell...
- 
- return cell;
- }
- */
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell;
+    
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    switch (section) {
+        case 0: {
+            if (row == 0)      cell = [tableView dequeueReusableCellWithIdentifier:@"title" forIndexPath:indexPath];
+            else if (row == 1) cell = [tableView dequeueReusableCellWithIdentifier:@"subtitle" forIndexPath:indexPath];
+            
+            UILabel *label = (UILabel*)[cell viewWithTag:1];
+            
+            if (indexPath.row == 0)      [label setText:_foodProduct[@"productName"]];
+            else if (indexPath.row == 1) [label setText:_foodProduct[@"subtitle"]];
+            
+            break;
+        }
+            
+        case 1: {
+            NSArray *fields = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
+            NSArray *units = @[@"kcal",@"g",@"g",@"g",@"g",@"g"];
+            NSString *fieldName = [fields objectAtIndex:row];
+            
+            if (_foodProduct[fieldName] != nil){
+                cell = [tableView dequeueReusableCellWithIdentifier:@"rightDetail" forIndexPath:indexPath];
+                
+
+                NSString *value = [NSString stringWithFormat:@"%@%@",_foodProduct[fieldName],units[row]];
+                NSString *title = [fieldName capitalizedString];
+                
+                [[cell textLabel] setText:title];
+                [[cell detailTextLabel] setText:value];
+            }
+            break;
+        }
+            
+        case 2: {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
+            UIImage *image = (UIImage*)[cell viewWithTag:2];
+            
+            
+            
+            break;
+        }
+            
+        default:
+            break;
+    }
+    
+    
+    // Configure the cell...
+    
+    return cell;
+}
+
 
 /*
  // Override to support conditional editing of the table view.
