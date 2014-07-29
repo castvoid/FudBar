@@ -29,6 +29,8 @@
     [super viewDidLoad];
     scannerState = kReadyToScan;
     
+    [_manualBarcodeEntryField setDelegate:self];
+    
     UIImage *image = [[UIImage imageNamed:@"Barcode"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [_scanButton setImage:image forState:UIControlStateNormal];
     [_scanButton setTitleColor:_scanButton.tintColor forState:UIControlStateNormal];
@@ -60,7 +62,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 - (void) barCodeViewController:(UIViewController *)barCodeViewController didDetectBarCode:(NSString *)barCode {
     if (scannerState != kScanComplete){
         scannerState = kScanComplete;
@@ -75,7 +76,6 @@
         }];
     }
 }
-
 
 - (IBAction)scanButtonPressed:(id)sender {
     HHBarCodeViewController *hhbvc = [HHBarCodeViewController new];
@@ -102,5 +102,14 @@
     [self.navigationController pushViewController:pIVC animated:animated];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    NSLog(@"Pressed enter... Running query for barcode");
+    
+    [textField resignFirstResponder];
+    
+    [self showProductInfoForBarcode:textField.text animated:YES];
+    
+    return YES;
+}
 
 @end

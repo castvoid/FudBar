@@ -28,6 +28,7 @@
 		4A8722E5198696EF001C544A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E4198696EF001C544A /* StoreKit.framework */; };
 		4A8722E7198696FB001C544A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E6198696FB001C544A /* SystemConfiguration.framework */; };
 		4A95700D1986ECC500B10D7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A95700C1986ECC500B10D7F /* Settings.bundle */; };
+		4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AC71987AF7F00DFC589 /* APIRequester.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		4A8722E4198696EF001C544A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A8722E6198696FB001C544A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4A95700C1986ECC500B10D7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
+		4AF12AC61987AF7F00DFC589 /* APIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequester.h; sourceTree = "<group>"; };
+		4AF12AC71987AF7F00DFC589 /* APIRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequester.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +143,8 @@
 		4A8722A919868435001C544A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AF12AC61987AF7F00DFC589 /* APIRequester.h */,
+				4AF12AC71987AF7F00DFC589 /* APIRequester.m */,
 				4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */,
 				4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */,
 				4A95700C1986ECC500B10D7F /* Settings.bundle */,
@@ -292,6 +297,7 @@
 				4A8722AF19868435001C544A /* AppDelegate.m in Sources */,
 				4A8722AC19868435001C544A /* main.m in Sources */,
 				4A8722CD19868798001C544A /* HHBarCodeViewController.m in Sources */,
+				4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */,
 				4A8722D1198693C6001C544A /* ProductInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

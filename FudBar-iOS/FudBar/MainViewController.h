@@ -15,7 +15,7 @@ typedef enum {
     kScanComplete
 } ScannerState;
 
-@interface MainViewController : UIViewController<HHBarCodeViewControllerDelegate>{
+@interface MainViewController : UIViewController<HHBarCodeViewControllerDelegate,UITextFieldDelegate>{
     ScannerState scannerState;
 }
 
@@ -23,6 +23,7 @@ typedef enum {
 - (IBAction)testBarCodeButtonPressed:(id)sender;
 
 
+@property (weak, nonatomic) IBOutlet UITextField *manualBarcodeEntryField;
 
 @property (nonatomic) NSString *currentBarCode;
 

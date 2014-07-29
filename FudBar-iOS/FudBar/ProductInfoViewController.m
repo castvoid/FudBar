@@ -7,6 +7,7 @@
 //
 
 #import "ProductInfoViewController.h"
+#import "APIRequester.h"
 
 @interface ProductInfoViewController ()
 
@@ -57,7 +58,43 @@
                 [self updateTableWithFoodProduct:object];
             }else{
                 NSLog(@"No product found in database for barcode %@", barcode);
-                
+                NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.nutritionix.com/v1_1/item?upc=%@&appId=***REMOVED***&appKey=***REMOVED***",barcode]];
+                [APIRequester requestJSONWithURL:url andHandler:^(id data) {
+                    NSLog(@"Got data: %@",[data description]);
+                    if ([data[@"status_code"] isEqualToNumber:@404] || ![data objectForKey:@"brand_name"]){
+                        NSLog(@"Product not in database...");
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No product identified" message:@"Try something else" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+                            alert.tag = 1;
+                            [alert show];
+                        });
+                    }else{
+                        float m = [(NSNumber*)data[@"nf_servings_per_container"] floatValue];
+                        NSArray *values = @[@"brand_name",@"item_name",@"nf_calories",@"nf_total_fats",@"nf_total_carbohydrate",@"nf_saturated_fat",@"nf_sugars",@"nf_sodium"];
+                        for (id value in values){
+                            if (data[value] == nil || !data[value] || data[value] == [NSNull null]){
+                                data[value] = @0;
+                            }
+                        }
+                        NSDictionary *mapping = @{
+                                                  @"productName":data[@"brand_name"],
+                                                  @"subtitle":data[@"item_name"],
+                                                  @"barCodeNumber":barcode,
+                                                  @"calories":@(m*[data[@"nf_calories"] floatValue]),
+                                                  @"fats":@(m*[data[@"nf_total_fats"] floatValue]),
+                                                  @"carbohydrates":@(m*[data[@"nf_total_carbohydrate"] floatValue]),
+                                                  @"saturates":@(m*[data[@"nf_saturated_fat"] floatValue]),
+                                                  @"sugars":@(m*[data[@"nf_sugars"] floatValue]),
+                                                  @"salt":@(m*[data[@"nf_sodium"] floatValue])
+                                                  };
+                        NSLog(@"Mapping: %@",[mapping description]);
+                        PFObject *object = [PFObject objectWithClassName:@"FoodProduct" dictionary:mapping];
+                        [object saveInBackground];
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            [self updateTableWithFoodProduct:object];
+                        });
+                    }
+                }];
             }
         } else {
             // Log details of the failure
