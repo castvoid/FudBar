@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -50,17 +49,27 @@
                                     <action selector="testBarCodeButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="lsl-F4-NDe"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Füdbar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIl-Fc-snr">
+                                <rect key="frame" x="194" y="80" width="92" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="HIl-Fc-snr" secondAttribute="centerX" id="Ild-XO-G41"/>
                             <constraint firstItem="qiG-97-nes" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Mk0-37-4YX"/>
                             <constraint firstItem="qiG-97-nes" firstAttribute="top" secondItem="uvO-qp-jkJ" secondAttribute="bottom" constant="8" id="SYX-y8-7gz"/>
                             <constraint firstAttribute="centerY" secondItem="X7l-bA-dCB" secondAttribute="centerY" id="UzF-Q0-k53"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qiG-97-nes" secondAttribute="bottom" id="dAc-hc-gWa"/>
                             <constraint firstItem="uvO-qp-jkJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="15" id="npf-Wy-JLA"/>
                             <constraint firstAttribute="trailing" secondItem="qiG-97-nes" secondAttribute="trailing" id="rVQ-ke-hhs"/>
+                            <constraint firstItem="X7l-bA-dCB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HIl-Fc-snr" secondAttribute="bottom" constant="10" id="sAP-97-jEH"/>
+                            <constraint firstItem="HIl-Fc-snr" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="60" id="uqe-Gf-BWv"/>
                             <constraint firstAttribute="centerX" secondItem="X7l-bA-dCB" secondAttribute="centerX" id="wXx-5Q-R2Q"/>
                         </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="HhT-kZ-aSN"/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -73,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="832" y="141"/>
         </scene>
-        <!--Product Information-->
+        <!--Product Info View Controller - Product Information-->
         <scene sceneID="FQG-rZ-cWm">
             <objects>
                 <tableViewController storyboardIdentifier="productInfoViewController" id="glO-KU-6J2" customClass="ProductInfoViewController" sceneMemberID="viewController">
@@ -81,6 +90,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="title" id="DHv-nP-1H5">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -142,20 +152,24 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="image" id="Bjd-q1-5pB">
+                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="image" rowHeight="150" id="Bjd-q1-5pB">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bjd-q1-5pB" id="GwB-II-CBc">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eLY-ub-nx3">
-                                            <rect key="frame" x="0.0" y="0.0" width="480" height="43"/>
+                                        <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eLY-ub-nx3" customClass="PFImageView">
+                                            <rect key="frame" x="0.0" y="0.0" width="480" height="149"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="ESh-h4-Ad2"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="eLY-ub-nx3" firstAttribute="top" secondItem="GwB-II-CBc" secondAttribute="top" id="4AA-Nz-XIk"/>
-                                        <constraint firstAttribute="bottom" secondItem="eLY-ub-nx3" secondAttribute="bottom" id="5cj-kS-Ghc"/>
-                                        <constraint firstItem="eLY-ub-nx3" firstAttribute="leading" secondItem="GwB-II-CBc" secondAttribute="leading" id="5n9-Le-vvP"/>
-                                        <constraint firstAttribute="trailing" secondItem="eLY-ub-nx3" secondAttribute="trailing" id="Jt5-Yj-Ttx"/>
+                                        <constraint firstAttribute="trailing" secondItem="eLY-ub-nx3" secondAttribute="trailing" id="HEE-Q4-Ylx"/>
+                                        <constraint firstAttribute="bottom" secondItem="eLY-ub-nx3" secondAttribute="bottom" id="K9j-bK-kXj"/>
+                                        <constraint firstItem="eLY-ub-nx3" firstAttribute="leading" secondItem="GwB-II-CBc" secondAttribute="leading" id="bgn-Qt-3V6"/>
+                                        <constraint firstItem="eLY-ub-nx3" firstAttribute="top" secondItem="GwB-II-CBc" secondAttribute="top" id="tdV-1H-r14"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -171,7 +185,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NiA-wV-AMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="141"/>
+            <point key="canvasLocation" x="1541" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dnc-oc-shD">

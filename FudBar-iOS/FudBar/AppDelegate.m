@@ -19,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [PFImageView class]; // Hack to get the image view to work in storyboard
+    
     [Parse setApplicationId:@"***REMOVED***"
                   clientKey:@"***REMOVED***"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];

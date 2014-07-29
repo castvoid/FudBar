@@ -14,22 +14,19 @@
 
 @implementation ProductInfoViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         _foodProduct = nil;
-        
     }
     return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self loadFoodProductForBarcode:_barcode];
     // Uncomment the following line to preserve selection between presentations.
@@ -39,8 +36,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -48,7 +44,7 @@
 #pragma mark - Data management
 
 - (void)loadFoodProductForBarcode:(NSString*)barcode{
-    PFQuery *query = [PFQuery queryWithClassName:@"FoodProduct"];
+    PFQuery *query =  [PFQuery queryWithClassName:@"FoodProduct"];
     [query whereKey:@"barCodeNumber" equalTo:barcode];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -60,9 +56,8 @@
                 PFObject *object = objects[0];
                 [self updateTableWithFoodProduct:object];
             }else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No product identified" message:@"Try something else" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-                alert.tag = 1;
-                [alert show];
+                NSLog(@"No product found in database for barcode %@", barcode);
+                
             }
         } else {
             // Log details of the failure
@@ -75,6 +70,12 @@
 
 - (void)updateTableWithFoodProduct: (PFObject*) object{
     _foodProduct = object;
+    PFFile *imageFile = _foodProduct[@"image"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        NSLog(@"Got image data");
+        productImage = [UIImage imageWithData:data];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
     [[self tableView] reloadData];
     
 }
@@ -100,20 +101,46 @@
 
 #pragma mark - Table view data sonurce
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return !_foodProduct ? 0 : 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    int ret[] = {2,6,1};
-    return ret[section];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSArray *keys;
+    switch (section) {
+        case 0:
+            keys = @[@"productName",@"subtitle"];
+            break;
+        case 1:
+            keys = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
+            break;
+        case 2:
+            keys = @[@"image"];
+            break;
+            
+    }
+    return [self numberOfValidKeysFromArray:keys forObject:_foodProduct];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (NSInteger)numberOfValidKeysFromArray:(NSArray*)array forObject:(PFObject*)object{
+    NSInteger validKeys = 0;
+    for (NSString* key in array){
+        if ([self object:object doesHaveDataForKey:key]) validKeys++;
+    }
+    return validKeys;
+}
+
+- (BOOL)object:(PFObject*)object doesHaveDataForKey:(NSString*)key{
+    id data = object[key];
+    
+    if (data == nil) return NO;
+    if ([[data class] isSubclassOfClass:[NSString class]] && [(NSString*)data length] == 0) return NO;
+    
+    return YES;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell;
     
@@ -134,33 +161,51 @@
         }
             
         case 1: {
-
+            
             NSArray *fields = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
             NSArray *units = @[@"kcal",@"g",@"g",@"g",@"g",@"g"];
             NSString *fieldName = [fields objectAtIndex:row];
             
-            if (_foodProduct[fieldName] != nil){
-                cell = [tableView dequeueReusableCellWithIdentifier:@"rightDetail" forIndexPath:indexPath];
-                
-
-                NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-                [fmt setPositiveFormat:@"0.##"];
-                
-                NSString *value = [NSString stringWithFormat:@"%@%@",[fmt stringFromNumber:_foodProduct[fieldName]],units[row]];
-                NSString *title = [fieldName capitalizedString];
-                
-                [[cell textLabel] setText:title];
-                [[cell detailTextLabel] setText:value];
+            NSNumber *rawNumber = _foodProduct[fieldName];
+            
+            if (rawNumber == nil){
+                rawNumber = @0;
             }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"rightDetail" forIndexPath:indexPath];
+            
+            
+            NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+            [fmt setPositiveFormat:@"0.##"];
+            
+            NSString *value = [NSString stringWithFormat:@"%@%@",[fmt stringFromNumber:rawNumber],units[row]];
+            NSString *title = [fieldName capitalizedString];
+            
+            [[cell textLabel] setText:title];
+            [[cell detailTextLabel] setText:value];
+            
             break;
         }
             
         case 2: {
+//            NSLog(@"Getting image...");
+//            
+//            cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
+//            PFImageView *imageView = (PFImageView*)[cell viewWithTag:2];
+//            
+//            PFFile *imageFile = _foodProduct[@"image"];
+//            
+//            [imageView setFile:imageFile];
+//            [imageView loadInBackground:^(UIImage *image, NSError *error) {
+//                //[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }];
+//            NSLog(@"Cell size: (%fx%f) / Image size: (%fx%f)",cell.frame.size.width,cell.frame.size.height,imageView.frame.size.width,imageView.frame.size.height);
+//            [imageView sizeToFit];
+//            break;
             cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
-            UIImage *image = (UIImage*)[cell viewWithTag:2];
+            UIImageView *imageView = (UIImageView*)[cell viewWithTag:2];
             
-            
-            
+            [imageView setImage:productImage];
+            [imageView sizeToFit];
             break;
         }
             
@@ -170,12 +215,11 @@
     
     
     // Configure the cell...
-    
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
         case 1: // If not available, do not display...
             return @"Nutritional Information";

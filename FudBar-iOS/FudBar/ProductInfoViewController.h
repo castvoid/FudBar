@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface ProductInfoViewController : UITableViewController <UIAlertViewDelegate>
+@interface ProductInfoViewController : UITableViewController <UIAlertViewDelegate>{
+    UIImage *productImage;
+}
 
 @property (nonatomic) NSString* barcode;
 @property (nonatomic) PFObject *foodProduct;
