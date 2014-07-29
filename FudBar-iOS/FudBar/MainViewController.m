@@ -46,7 +46,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,39 +66,41 @@
         scannerState = kScanComplete;
         _currentBarCode = barCode;
         NSLog(@"Detected barcode: %@", barCode);
-        if (![self.presentedViewController isBeingDismissed]){
-            [self dismissViewControllerAnimated:YES completion:^{
-                [self detectedBarCode:barCode];
-            }];
-        }
+
+        _barcodeLabel.text = _currentBarCode;
+        
+        [self showProductInfoForBarcode:barCode animated:NO];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            scannerState = kReadyToScan;
+        }];
     }
 }
 
-- (void)detectedBarCode:(NSString*)barCode{
-    _barcodeLabel.text = _currentBarCode;
-    scannerState = kReadyToScan;
-    [self showProductInfoForBarcode:barCode];
-}
 
 - (IBAction)scanButtonPressed:(id)sender {
     HHBarCodeViewController *hhbvc = [HHBarCodeViewController new];
     hhbvc.delegate = self;
     
     
-    [self presentViewController:hhbvc animated:YES completion:^{
+    [self.navigationController presentViewController:hhbvc animated:YES completion:^{
         //code
     }];
 }
 
 - (IBAction)testBarCodeButtonPressed:(id)sender {
-    [self detectedBarCode:@"0012345678905"];
+    _barcodeLabel.text = _currentBarCode;
+    scannerState = kReadyToScan;
+    [self showProductInfoForBarcode:@"0012345678905" animated:YES];
 }
 
-- (void)showProductInfoForBarcode:(NSString*)barcode{
+- (void)showProductInfoForBarcode:(NSString*)barcode animated:(BOOL)animated{
     ProductInfoViewController *pIVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"productInfoViewController"];
     pIVC.barcode = barcode;
-    [self presentViewController:pIVC animated:YES completion:^{
-        NSLog(@"Presenting product info for barcode %@",barcode);
-    }];
+//    [self.navigationController presentViewController:pIVC animated:YES completion:^{
+//        NSLog(@"Presenting product info for barcode %@",barcode);
+//    }];
+    [self.navigationController pushViewController:pIVC animated:animated];
 }
+
+
 @end

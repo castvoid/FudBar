@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
@@ -62,6 +62,8 @@
                             <constraint firstAttribute="centerX" secondItem="X7l-bA-dCB" secondAttribute="centerX" id="wXx-5Q-R2Q"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="HhT-kZ-aSN"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="barcodeLabel" destination="qiG-97-nes" id="9Am-LB-GAX"/>
                         <outlet property="scanButton" destination="X7l-bA-dCB" id="Fqf-eO-Dde"/>
@@ -69,8 +71,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="832" y="141"/>
         </scene>
-        <!--Product Info View Controller-->
+        <!--Product Information-->
         <scene sceneID="FQG-rZ-cWm">
             <objects>
                 <tableViewController storyboardIdentifier="productInfoViewController" id="glO-KU-6J2" customClass="ProductInfoViewController" sceneMemberID="viewController">
@@ -162,10 +165,31 @@
                             <outlet property="delegate" destination="glO-KU-6J2" id="Tiz-jU-mTp"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Product Information" id="ldb-C6-Po6">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="8Da-i3-HKk"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NiA-wV-AMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="144"/>
+            <point key="canvasLocation" x="1541" y="141"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dnc-oc-shD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XnI-Nl-sLg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EvJ-F4-JtF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="dK4-3P-8lI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jHS-ym-EwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="47" y="144"/>
         </scene>
     </scenes>
     <resources>

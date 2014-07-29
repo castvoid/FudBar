@@ -19,16 +19,19 @@
     self = [super initWithStyle:style];
     if (self) {
         _foodProduct = nil;
+        
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self loadFoodProductForBarcode:_barcode];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -131,6 +134,7 @@
         }
             
         case 1: {
+
             NSArray *fields = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
             NSArray *units = @[@"kcal",@"g",@"g",@"g",@"g",@"g"];
             NSString *fieldName = [fields objectAtIndex:row];
@@ -139,7 +143,10 @@
                 cell = [tableView dequeueReusableCellWithIdentifier:@"rightDetail" forIndexPath:indexPath];
                 
 
-                NSString *value = [NSString stringWithFormat:@"%@%@",_foodProduct[fieldName],units[row]];
+                NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+                [fmt setPositiveFormat:@"0.##"];
+                
+                NSString *value = [NSString stringWithFormat:@"%@%@",[fmt stringFromNumber:_foodProduct[fieldName]],units[row]];
                 NSString *title = [fieldName capitalizedString];
                 
                 [[cell textLabel] setText:title];
@@ -167,6 +174,19 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 1: // If not available, do not display...
+            return @"Nutritional Information";
+            
+        case 2:
+            return @"Image";
+            
+        default:
+            return nil;
+    }
+}
 
 /*
  // Override to support conditional editing of the table view.
