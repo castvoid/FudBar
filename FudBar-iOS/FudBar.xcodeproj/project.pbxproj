@@ -29,6 +29,8 @@
 		4A8722E7198696FB001C544A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E6198696FB001C544A /* SystemConfiguration.framework */; };
 		4A95700D1986ECC500B10D7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A95700C1986ECC500B10D7F /* Settings.bundle */; };
 		4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AC71987AF7F00DFC589 /* APIRequester.m */; };
+		4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12ACA1987CF1000DFC589 /* ProductDataEntryTableViewController.m */; };
+		4AF12AD11987F12700DFC589 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AD01987F12700DFC589 /* UIView+AutoLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,10 @@
 		4A95700C1986ECC500B10D7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		4AF12AC61987AF7F00DFC589 /* APIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequester.h; sourceTree = "<group>"; };
 		4AF12AC71987AF7F00DFC589 /* APIRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequester.m; sourceTree = "<group>"; };
+		4AF12AC91987CF1000DFC589 /* ProductDataEntryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDataEntryTableViewController.h; sourceTree = "<group>"; };
+		4AF12ACA1987CF1000DFC589 /* ProductDataEntryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductDataEntryTableViewController.m; sourceTree = "<group>"; };
+		4AF12ACF1987F12700DFC589 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
+		4AF12AD01987F12700DFC589 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,8 @@
 				4A8722B019868435001C544A /* MainViewController.h */,
 				4A8722B119868435001C544A /* MainViewController.m */,
 				4A8722B319868435001C544A /* Main.storyboard */,
+				4AF12AC91987CF1000DFC589 /* ProductDataEntryTableViewController.h */,
+				4AF12ACA1987CF1000DFC589 /* ProductDataEntryTableViewController.m */,
 				4A8722CF198693C6001C544A /* ProductInfoViewController.h */,
 				4A8722D0198693C6001C544A /* ProductInfoViewController.m */,
 				4A8722B619868435001C544A /* Images.xcassets */,
@@ -153,6 +161,8 @@
 				4A8722AB19868435001C544A /* main.m */,
 				4A8722CE198687AB001C544A /* HHBarCodeViewController.h */,
 				4A8722CC19868798001C544A /* HHBarCodeViewController.m */,
+				4AF12ACF1987F12700DFC589 /* UIView+AutoLayout.h */,
+				4AF12AD01987F12700DFC589 /* UIView+AutoLayout.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -296,6 +306,8 @@
 				4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */,
 				4A8722AF19868435001C544A /* AppDelegate.m in Sources */,
 				4A8722AC19868435001C544A /* main.m in Sources */,
+				4AF12AD11987F12700DFC589 /* UIView+AutoLayout.m in Sources */,
+				4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */,
 				4A8722CD19868798001C544A /* HHBarCodeViewController.m in Sources */,
 				4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */,
 				4A8722D1198693C6001C544A /* ProductInfoViewController.m in Sources */,

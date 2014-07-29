@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "ProductDataEntryTableViewController.h"
 
-@interface ProductInfoViewController : UITableViewController <UIAlertViewDelegate>{
+@interface ProductInfoViewController : UITableViewController <UIAlertViewDelegate,ProductInfoEntryDelegate>{
     UIImage *productImage;
 }
 

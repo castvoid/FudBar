@@ -45,6 +45,10 @@
 #pragma mark - Data management
 
 - (void)loadFoodProductForBarcode:(NSString*)barcode{
+    if ([_barcode isEqualToString:@"12345678912"]){
+        [self showProductEntryViewControllerForBarcode:_barcode];
+        return;
+    }
     PFQuery *query =  [PFQuery queryWithClassName:@"FoodProduct"];
     [query whereKey:@"barCodeNumber" equalTo:barcode];
     
@@ -61,12 +65,10 @@
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.nutritionix.com/v1_1/item?upc=%@&appId=***REMOVED***&appKey=***REMOVED***",barcode]];
                 [APIRequester requestJSONWithURL:url andHandler:^(id data) {
                     NSLog(@"Got data: %@",[data description]);
-                    if ([data[@"status_code"] isEqualToNumber:@404] || ![data objectForKey:@"brand_name"]){
+                    if (!data || [data[@"status_code"] isEqualToNumber:@404] || ![data objectForKey:@"brand_name"]){
                         NSLog(@"Product not in database...");
                         dispatch_sync(dispatch_get_main_queue(), ^{
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No product identified" message:@"Try something else" delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
-                            alert.tag = 1;
-                            [alert show];
+                            [self showProductEntryViewControllerForBarcode:barcode];
                         });
                     }else{
                         float m = [(NSNumber*)data[@"nf_servings_per_container"] floatValue];
@@ -103,6 +105,14 @@
     }];
     
     
+}
+
+- (void)showProductEntryViewControllerForBarcode:(NSString*)barcode{
+    ProductDataEntryTableViewController *pDEVC = [[ProductDataEntryTableViewController alloc]init];
+    pDEVC.object = [PFObject objectWithClassName:@"FoodProduct"];
+    [pDEVC.object setObject:barcode forKey:@"barCodeNumber"];
+//    [self presentViewController:pDEVC animated:YES completion:^{}];
+    [self.navigationController pushViewController:pDEVC animated:YES];
 }
 
 - (void)updateTableWithFoodProduct: (PFObject*) object{
@@ -224,20 +234,20 @@
         }
             
         case 2: {
-//            NSLog(@"Getting image...");
-//            
-//            cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
-//            PFImageView *imageView = (PFImageView*)[cell viewWithTag:2];
-//            
-//            PFFile *imageFile = _foodProduct[@"image"];
-//            
-//            [imageView setFile:imageFile];
-//            [imageView loadInBackground:^(UIImage *image, NSError *error) {
-//                //[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }];
-//            NSLog(@"Cell size: (%fx%f) / Image size: (%fx%f)",cell.frame.size.width,cell.frame.size.height,imageView.frame.size.width,imageView.frame.size.height);
-//            [imageView sizeToFit];
-//            break;
+            //            NSLog(@"Getting image...");
+            //
+            //            cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
+            //            PFImageView *imageView = (PFImageView*)[cell viewWithTag:2];
+            //
+            //            PFFile *imageFile = _foodProduct[@"image"];
+            //
+            //            [imageView setFile:imageFile];
+            //            [imageView loadInBackground:^(UIImage *image, NSError *error) {
+            //                //[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            //            }];
+            //            NSLog(@"Cell size: (%fx%f) / Image size: (%fx%f)",cell.frame.size.width,cell.frame.size.height,imageView.frame.size.width,imageView.frame.size.height);
+            //            [imageView sizeToFit];
+            //            break;
             cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
             UIImageView *imageView = (UIImageView*)[cell viewWithTag:2];
             
@@ -269,53 +279,9 @@
     }
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
- {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+- (void)productInfoEntryCompleteForObject:(PFObject *)object{
+    _foodProduct = object;
+    [self updateTableWithFoodProduct:_foodProduct];
+}
 
 @end
