@@ -45,7 +45,7 @@
 #pragma mark - Data management
 
 - (void)loadFoodProductForBarcode:(NSString*)barcode{
-    if ([_barcode isEqualToString:@"12345678912"]){
+    if (_barcode.length >= 4 && [[_barcode substringToIndex:4] isEqualToString:@"noDB"]){
         [self showProductEntryViewControllerForBarcode:_barcode];
         return;
     }
@@ -61,12 +61,12 @@
                 PFObject *object = objects[0];
                 [self updateTableWithFoodProduct:object];
             }else{
-                NSLog(@"No product found in database for barcode %@", barcode);
+                NSLog(@"Product not in Füdbar database with barcode \"%@\", will query Nutritionix...", barcode);
                 NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.nutritionix.com/v1_1/item?upc=%@&appId=***REMOVED***&appKey=***REMOVED***",barcode]];
                 [APIRequester requestJSONWithURL:url andHandler:^(id data) {
-                    NSLog(@"Got data: %@",[data description]);
+//                    NSLog(@"Got data: %@",[data description]);
                     if (!data || [data[@"status_code"] isEqualToNumber:@404] || ![data objectForKey:@"brand_name"]){
-                        NSLog(@"Product not in database...");
+                        NSLog(@"Product not in Nutritionix db either, will request user data entry...");
                         dispatch_sync(dispatch_get_main_queue(), ^{
                             [self showProductEntryViewControllerForBarcode:barcode];
                         });
@@ -108,10 +108,10 @@
 }
 
 - (void)showProductEntryViewControllerForBarcode:(NSString*)barcode{
-    ProductDataEntryTableViewController *pDEVC = [[ProductDataEntryTableViewController alloc]init];
+    ProductDataEntryTableViewController *pDEVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ProductDataEntryTableViewController"];
     pDEVC.object = [PFObject objectWithClassName:@"FoodProduct"];
     [pDEVC.object setObject:barcode forKey:@"barCodeNumber"];
-//    [self presentViewController:pDEVC animated:YES completion:^{}];
+    pDEVC.delegate = self;
     [self.navigationController pushViewController:pDEVC animated:YES];
 }
 
@@ -280,8 +280,9 @@
 }
 
 - (void)productInfoEntryCompleteForObject:(PFObject *)object{
+    NSLog(@"Updating product info");
     _foodProduct = object;
-    [self updateTableWithFoodProduct:_foodProduct];
+    [self updateTableWithFoodProduct:object];
 }
 
 @end

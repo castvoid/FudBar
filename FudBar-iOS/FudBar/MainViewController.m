@@ -90,7 +90,7 @@
 - (IBAction)testBarCodeButtonPressed:(id)sender {
     _barcodeLabel.text = _currentBarCode;
     scannerState = kReadyToScan;
-    [self showProductInfoForBarcode:@"0012345678905" animated:YES];
+    [self showProductInfoForBarcode:@"quickTest" animated:YES];
 }
 
 - (void)showProductInfoForBarcode:(NSString*)barcode animated:(BOOL)animated{

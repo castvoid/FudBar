@@ -166,7 +166,7 @@
             }
         }
         
-        if (detectionString != nil) {
+        if (detectionString != nil && !self.isBeingPresented && !self.isBeingDismissed) {
             if (self.delegate) {
                 [self.delegate barCodeViewController:self didDetectBarCode:detectionString];
             }
