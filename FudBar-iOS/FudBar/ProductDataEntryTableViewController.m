@@ -97,7 +97,6 @@
         }else if (section == 1){
             [textLabel setText: [(NSString*)fields[section][row] capitalizedString] ];
             [textField setPlaceholder:@"0"];
-            [textField setText:@""];
             [textField setKeyboardType:UIKeyboardTypeDecimalPad];
         }
     }else if (section == 2){
