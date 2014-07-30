@@ -37,7 +37,9 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    [_object saveInBackground];
+    if ( ((NSString*)_object[@"barcode"]).length >= 4 && [[_object[@"barcode"] substringToIndex:4] isEqualToString:@"noDB"])
+        [_object saveInBackground];
+    
     if ([_delegate respondsToSelector:@selector(productInfoEntryCompleteForObject:)]){
         [_delegate productInfoEntryCompleteForObject:_object];
     }
@@ -94,8 +96,19 @@
         if (section == 0){
             if (row == 0) [textLabel setText:@"Product Name"];
             else if (row == 1) [textLabel setText:@"Details"];
+            [textField setPlaceholder:@""];
         }else if (section == 1){
-            [textLabel setText: [(NSString*)fields[section][row] capitalizedString] ];
+            NSString *unit = !row ? @"kcals" : @"grams";
+            NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:[(NSString*)fields[section][row] capitalizedString]];
+            [labelText appendAttributedString:
+             [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (%@)",unit]
+                                             attributes:@{
+                                                          NSForegroundColorAttributeName:[UIColor grayColor]
+                                                          }
+              ]
+             ];
+            
+            [textLabel setAttributedText:labelText];
             [textField setPlaceholder:@"0"];
             [textField setKeyboardType:UIKeyboardTypeDecimalPad];
         }

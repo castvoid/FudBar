@@ -273,6 +273,8 @@
             [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]} range:NSMakeRange(distanceText.length - 2, 2)];
             [distanceLabel setAttributedText:distanceText];
             
+            UILabel *realDistance = (UILabel*)[cell viewWithTag:103];;
+            [realDistance setText:@""];
         }
         default:
             break;

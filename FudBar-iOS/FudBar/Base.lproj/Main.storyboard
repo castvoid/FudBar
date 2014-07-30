@@ -220,14 +220,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="runner" translatesAutoresizingMaskIntoConstraints="NO" id="tW5-AL-SlW">
-                                            <rect key="frame" x="10" y="10" width="60" height="60"/>
+                                            <rect key="frame" x="10" y="30" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="L8q-oT-u5C"/>
                                                 <constraint firstAttribute="height" constant="60" id="VU1-7x-1NW"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You would need to run" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-Ya-fTU">
-                                            <rect key="frame" x="78" y="10" width="522" height="25"/>
+                                            <rect key="frame" x="78" y="10" width="522" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="fpx-Pg-mtP">
                                                     <variation key="widthClass=compact" constant="19"/>
@@ -237,14 +237,14 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" verticalHuggingPriority="251" text="(thats from here to Bristol)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="190" translatesAutoresizingMaskIntoConstraints="NO" id="Big-wn-Yqt">
-                                            <rect key="frame" x="195" y="45" width="395" height="75"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" verticalHuggingPriority="251" text="(thats from here to Bristol)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="395" translatesAutoresizingMaskIntoConstraints="NO" id="Big-wn-Yqt">
+                                            <rect key="frame" x="195" y="41" width="395" height="58"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="diK-Ok-TlF">
-                                            <rect key="frame" x="78" y="45" width="97" height="75"/>
+                                            <rect key="frame" x="78" y="41" width="97" height="58"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="67" id="57U-2W-GcJ"/>
                                             </constraints>
@@ -282,9 +282,9 @@
                                         <constraint firstAttribute="bottom" secondItem="Big-wn-Yqt" secondAttribute="bottom" priority="999" constant="20" id="2MV-92-ohp">
                                             <variation key="widthClass=compact" constant="5"/>
                                         </constraint>
-                                        <constraint firstItem="tW5-AL-SlW" firstAttribute="top" secondItem="S7K-1c-Lta" secondAttribute="top" constant="10" id="4Qy-uX-G4m"/>
                                         <constraint firstItem="GSP-Ya-fTU" firstAttribute="top" secondItem="S7K-1c-Lta" secondAttribute="top" priority="999" constant="10" id="5Mn-CT-cNa"/>
                                         <constraint firstItem="tW5-AL-SlW" firstAttribute="leading" secondItem="S7K-1c-Lta" secondAttribute="leading" constant="10" id="5zm-2U-uup"/>
+                                        <constraint firstAttribute="centerY" secondItem="tW5-AL-SlW" secondAttribute="centerY" id="Etc-ZH-mVG"/>
                                         <constraint firstAttribute="trailing" secondItem="Big-wn-Yqt" secondAttribute="trailing" constant="10" id="G9b-LQ-3Tr">
                                             <variation key="widthClass=compact" constant="15"/>
                                         </constraint>
