@@ -188,6 +188,7 @@
     id data = object[key];
     
     if (data == nil) return NO;
+    if (data == [NSNull null]) return NO;
     if ([[data class] isSubclassOfClass:[NSString class]] && [(NSString*)data length] == 0) return NO;
     
     return YES;

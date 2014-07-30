@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */; };
 		4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */; };
 		4A8722AC19868435001C544A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AB19868435001C544A /* main.m */; };
 		4A8722AF19868435001C544A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AE19868435001C544A /* AppDelegate.m */; };
@@ -46,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		11ACA597A97A406FA2E0FA53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resizeAndCrop.h"; sourceTree = "<group>"; };
+		4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resizeAndCrop.m"; sourceTree = "<group>"; };
 		4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonWithTextUnderImage.h; sourceTree = "<group>"; };
 		4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithTextUnderImage.m; sourceTree = "<group>"; };
 		4A8722A619868435001C544A /* FudBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +168,8 @@
 		4A8722A919868435001C544A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */,
+				4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */,
 				4AF12AC61987AF7F00DFC589 /* APIRequester.h */,
 				4AF12AC71987AF7F00DFC589 /* APIRequester.m */,
 				4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */,
@@ -352,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A8722B219868435001C544A /* MainViewController.m in Sources */,
+				4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */,
 				4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */,
 				4A8722AF19868435001C544A /* AppDelegate.m in Sources */,
 				4A8722AC19868435001C544A /* main.m in Sources */,

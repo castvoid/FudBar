@@ -8,6 +8,7 @@
 
 #import "ProductDataEntryTableViewController.h"
 #import "UIView+AutoLayout.h"
+#import "UIImage+resizeAndCrop.h"
 
 @interface ProductDataEntryTableViewController ()
 @property  UIImageView* imagePreviewView;
@@ -140,11 +141,15 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *smallImage = [self imageWithImage:image scaledToWidth:640];
+    UIImage *newImage = [smallImage imageByCroppingToSize:CGSizeMake(640, 300)];
     
-    [self.imagePreviewView setImage:smallImage];
+    
+    [self.imagePreviewView setImage:newImage];
+    
+    NSLog(@"Full image: %@\nSmall: %@\nNew: %@",NSStringFromCGSize(image.size), NSStringFromCGSize(smallImage.size), NSStringFromCGSize(newImage.size));
     
     // Upload image
-    NSData *imageData = UIImageJPEGRepresentation(smallImage, 0.05f);
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.1f);
     
 
     PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
