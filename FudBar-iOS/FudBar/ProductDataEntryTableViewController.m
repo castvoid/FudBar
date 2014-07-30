@@ -10,6 +10,7 @@
 #import "UIView+AutoLayout.h"
 
 @interface ProductDataEntryTableViewController ()
+@property  UIImageView* imagePreviewView;
 @end
 
 @implementation ProductDataEntryTableViewController
@@ -47,22 +48,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    NSLog(@"Range: %@ -> '%@'",NSStringFromRange(range),string);
-    return YES;
-}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section>2) return 0;
+//    if (section>2) return 0;
     NSInteger rets[] = {2,6,1};
     return rets[section];
 }
@@ -72,15 +69,22 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"fieldCell" forIndexPath:indexPath];
+    NSString *reuseID;
+    if (section == 0 || section == 1){
+        reuseID = @"fieldCell";
+    }else if (section == 2){
+        reuseID = @"imageCell";
+    }
     
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
+    
+    
+    if (section < 2){
     NSArray *fields = @[
                         @[@"productName",@"subtitle"],
                         @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"]
                         ];
     UILabel *textLabel = (UILabel*)[cell viewWithTag:1];
-    if (section == 0 || section == 1){
 
         UITextField *textField = (UITextField*)[cell viewWithTag:3];
         textField.delegate = self;
@@ -91,28 +95,82 @@
             else if (row == 1) [textLabel setText:@"Details"];
         }else if (section == 1){
             [textLabel setText: [(NSString*)fields[section][row] capitalizedString] ];
-//            [textLabel sizeToFit];
             [textField setPlaceholder:@"0"];
             [textField setText:@""];
             [textField setKeyboardType:UIKeyboardTypeDecimalPad];
         }
-    
-//        textField.backgroundColor = [UIColor redColor];
-//        textLabel.backgroundColor = [UIColor greenColor];
-//        [textField setPlaceholder:@"Enter value"];
-//        [textField setTextAlignment:NSTextAlignmentRight];
-//        [textField setKeyboardType:UIKeyboardTypeAlphabet];
-//        [textField setBorderStyle:UITextBorderStyleNone];
-//        [cell.contentView addSubview:textField];
-//        [textField pinEdges:JRTViewPinBottomEdge | JRTViewPinRightEdge | JRTViewPinTopEdge toSameEdgesOfView:[textField superview]];
-//        [textField pinAttribute:NSLayoutAttributeLeft toAttribute:NSLayoutAttributeRight ofItem:cell.textLabel];
+    }else if (section == 2){
+        UIImageView *imageView = (UIImageView*)[cell viewWithTag:5];
+        self.imagePreviewView = imageView;
+        UIButton *button = (UIButton*)[cell viewWithTag:6];
+        button.clipsToBounds = YES;
+        button.layer.cornerRadius = button.frame.size.width / 2;
     }
     
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45;
+    return indexPath.section < 2 ? 45 : 150;
+}
+
+#pragma mark - Other methods
+
+- (IBAction)takePhotoButtonPressed:(id)sender {
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+    }
+    
+    // image picker needs a delegate,
+    [imagePickerController setDelegate:self];
+    
+    // Place image picker on the screen
+    [self presentViewController:imagePickerController animated:YES completion:^{}];
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // Access the uncropped image from info dictionary
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    
+    // Dismiss controller
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *smallImage = [self imageWithImage:image scaledToWidth:640];
+    
+    [self.imagePreviewView setImage:smallImage];
+    
+    // Upload image
+    NSData *imageData = UIImageJPEGRepresentation(smallImage, 0.05f);
+    
+
+    PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
+    
+    [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded && !error){
+            [self.object setObject:imageFile forKey:@"image"];
+        }
+        NSLog(@"Saved image");
+    }];
+    
+}
+
+-(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width
+{
+    float oldWidth = sourceImage.size.width;
+    float scaleFactor = i_width / oldWidth;
+    
+    float newHeight = sourceImage.size.height * scaleFactor;
+    float newWidth = oldWidth * scaleFactor;
+    
+    UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+    [sourceImage drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
@@ -130,7 +188,6 @@
         if (value == nil) [_object setObject:[NSNull null] forKey:key];
         else [_object setObject:value forKey:key];
     }
-    
-    
 }
+
 @end

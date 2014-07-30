@@ -16,9 +16,12 @@
 
 @end
 
-@interface ProductDataEntryTableViewController : UITableViewController<UITextFieldDelegate>{
+@interface ProductDataEntryTableViewController : UITableViewController<UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>{
     NSMutableDictionary *textFields;
 }
+
+- (IBAction)takePhotoButtonPressed:(id)sender;
+
 
 @property (nonatomic) PFObject *object;
 @property (nonatomic) NSObject<ProductInfoEntryDelegate> *delegate;

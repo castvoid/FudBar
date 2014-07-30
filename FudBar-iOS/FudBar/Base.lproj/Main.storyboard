@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -204,10 +204,10 @@
         <scene sceneID="5k9-k8-bLi">
             <objects>
                 <tableViewController storyboardIdentifier="ProductDataEntryTableViewController" id="Q6j-sg-UrP" customClass="ProductDataEntryTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1df-nx-By7">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="1df-nx-By7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="fieldCell" id="yg2-zJ-ZnO">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
@@ -250,6 +250,45 @@
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageCell" rowHeight="150" id="5gj-1r-4OF">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5gj-1r-4OF" id="vUe-Zo-aUB">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25w-QI-qJq" customClass="PFImageView">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="bET-bY-iCY"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6mF-x1-dRH">
+                                            <rect key="frame" x="251" y="25" width="99" height="99"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.47999999999999998" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="6mF-x1-dRH" secondAttribute="height" multiplier="1:1" id="84Y-ky-Tnc"/>
+                                            </constraints>
+                                            <state key="normal" title="Take Photo">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="takePhotoButtonPressed:" destination="Q6j-sg-UrP" eventType="touchUpInside" id="oU2-QK-eN5"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="25w-QI-qJq" secondAttribute="bottom" id="AMT-ij-2VO"/>
+                                        <constraint firstAttribute="centerY" secondItem="6mF-x1-dRH" secondAttribute="centerY" id="EY0-ct-SSb"/>
+                                        <constraint firstAttribute="centerX" secondItem="6mF-x1-dRH" secondAttribute="centerX" id="M7N-Ew-8te"/>
+                                        <constraint firstAttribute="bottom" secondItem="6mF-x1-dRH" secondAttribute="bottom" constant="25" id="Pmg-qk-T2e"/>
+                                        <constraint firstItem="25w-QI-qJq" firstAttribute="top" secondItem="vUe-Zo-aUB" secondAttribute="top" id="Qnr-fs-v8R"/>
+                                        <constraint firstItem="6mF-x1-dRH" firstAttribute="top" secondItem="vUe-Zo-aUB" secondAttribute="top" constant="25" id="d0v-Zp-rlZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="25w-QI-qJq" secondAttribute="trailing" id="wVD-ks-OrC"/>
+                                        <constraint firstItem="25w-QI-qJq" firstAttribute="leading" secondItem="vUe-Zo-aUB" secondAttribute="leading" id="zJq-pT-vcW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Q6j-sg-UrP" id="zk0-TU-AfV"/>
@@ -260,7 +299,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LOc-UE-yPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1999" y="-550"/>
+            <point key="canvasLocation" x="1999" y="-555"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dnc-oc-shD">
