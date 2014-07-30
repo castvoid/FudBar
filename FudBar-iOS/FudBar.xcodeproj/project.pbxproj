@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */; };
+		4A4B7E781989764300FAFCD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4B7E771989764300FAFCD8 /* StoreKit.framework */; };
 		4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */; };
 		4A8722AC19868435001C544A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AB19868435001C544A /* main.m */; };
 		4A8722AF19868435001C544A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AE19868435001C544A /* AppDelegate.m */; };
@@ -26,7 +27,6 @@
 		4A8722DF198696DD001C544A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722DE198696DD001C544A /* MobileCoreServices.framework */; };
 		4A8722E1198696E2001C544A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E0198696E2001C544A /* QuartzCore.framework */; };
 		4A8722E3198696E9001C544A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E2198696E9001C544A /* Security.framework */; };
-		4A8722E5198696EF001C544A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E4198696EF001C544A /* StoreKit.framework */; };
 		4A8722E7198696FB001C544A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E6198696FB001C544A /* SystemConfiguration.framework */; };
 		4A95700D1986ECC500B10D7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A95700C1986ECC500B10D7F /* Settings.bundle */; };
 		4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AC71987AF7F00DFC589 /* APIRequester.m */; };
@@ -49,9 +49,10 @@
 		11ACA597A97A406FA2E0FA53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resizeAndCrop.h"; sourceTree = "<group>"; };
 		4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resizeAndCrop.m"; sourceTree = "<group>"; };
+		4A4B7E771989764300FAFCD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonWithTextUnderImage.h; sourceTree = "<group>"; };
 		4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithTextUnderImage.m; sourceTree = "<group>"; };
-		4A8722A619868435001C544A /* FüdBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FüdBar.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8722A619868435001C544A /* FudBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8722AA19868435001C544A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A8722AB19868435001C544A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A8722AD19868435001C544A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,7 +61,7 @@
 		4A8722B119868435001C544A /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		4A8722B419868435001C544A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A8722B619868435001C544A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4A8722BC19868435001C544A /* FüdBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FüdBarTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8722BC19868435001C544A /* FudBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FudBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8722C119868435001C544A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A8722C219868435001C544A /* FudBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FudBarTests.m; sourceTree = "<group>"; };
 		4A8722CC19868798001C544A /* HHBarCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHBarCodeViewController.m; sourceTree = "<group>"; };
@@ -76,7 +77,6 @@
 		4A8722DE198696DD001C544A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4A8722E0198696E2001C544A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4A8722E2198696E9001C544A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		4A8722E4198696EF001C544A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A8722E6198696FB001C544A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4A95700C1986ECC500B10D7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		4AF12AC61987AF7F00DFC589 /* APIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequester.h; sourceTree = "<group>"; };
@@ -94,9 +94,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A8722E7198696FB001C544A /* SystemConfiguration.framework in Frameworks */,
-				4A8722E5198696EF001C544A /* StoreKit.framework in Frameworks */,
 				4A8722E3198696E9001C544A /* Security.framework in Frameworks */,
 				4A8722E1198696E2001C544A /* QuartzCore.framework in Frameworks */,
+				4A4B7E781989764300FAFCD8 /* StoreKit.framework in Frameworks */,
 				4A8722DF198696DD001C544A /* MobileCoreServices.framework in Frameworks */,
 				4A8722DD198696D5001C544A /* libz.dylib in Frameworks */,
 				4A8722DB198696C9001C544A /* CoreLocation.framework in Frameworks */,
@@ -121,6 +121,7 @@
 		35BF4C6022F342618955D918 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A4B7E771989764300FAFCD8 /* StoreKit.framework */,
 				11ACA597A97A406FA2E0FA53 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -140,8 +141,8 @@
 		4A8722A719868435001C544A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4A8722A619868435001C544A /* FüdBar.app */,
-				4A8722BC19868435001C544A /* FüdBarTests.xctest */,
+				4A8722A619868435001C544A /* FudBar.app */,
+				4A8722BC19868435001C544A /* FudBarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,7 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				4A8722E6198696FB001C544A /* SystemConfiguration.framework */,
-				4A8722E4198696EF001C544A /* StoreKit.framework */,
 				4A8722E2198696E9001C544A /* Security.framework */,
 				4A8722E0198696E2001C544A /* QuartzCore.framework */,
 				4A8722DE198696DD001C544A /* MobileCoreServices.framework */,
@@ -223,9 +223,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4A8722A519868435001C544A /* FüdBar */ = {
+		4A8722A519868435001C544A /* FudBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A8722C619868435001C544A /* Build configuration list for PBXNativeTarget "FüdBar" */;
+			buildConfigurationList = 4A8722C619868435001C544A /* Build configuration list for PBXNativeTarget "FudBar" */;
 			buildPhases = (
 				82A5FD620D4E40E5A283001B /* Check Pods Manifest.lock */,
 				4A8722A219868435001C544A /* Sources */,
@@ -237,14 +237,14 @@
 			);
 			dependencies = (
 			);
-			name = "FüdBar";
+			name = FudBar;
 			productName = FudBar;
-			productReference = 4A8722A619868435001C544A /* FüdBar.app */;
+			productReference = 4A8722A619868435001C544A /* FudBar.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4A8722BB19868435001C544A /* FüdBarTests */ = {
+		4A8722BB19868435001C544A /* FudBarTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A8722C919868435001C544A /* Build configuration list for PBXNativeTarget "FüdBarTests" */;
+			buildConfigurationList = 4A8722C919868435001C544A /* Build configuration list for PBXNativeTarget "FudBarTests" */;
 			buildPhases = (
 				4A8722B819868435001C544A /* Sources */,
 				4A8722B919868435001C544A /* Frameworks */,
@@ -255,9 +255,9 @@
 			dependencies = (
 				4A8722BE19868435001C544A /* PBXTargetDependency */,
 			);
-			name = "FüdBarTests";
+			name = FudBarTests;
 			productName = FudBarTests;
-			productReference = 4A8722BC19868435001C544A /* FüdBarTests.xctest */;
+			productReference = 4A8722BC19868435001C544A /* FudBarTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -272,6 +272,11 @@
 					4A8722A519868435001C544A = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = X9V6223Q5A;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					4A8722BB19868435001C544A = {
 						CreatedOnToolsVersion = 6.0;
@@ -279,7 +284,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4A8722A119868435001C544A /* Build configuration list for PBXProject "FüdBar" */;
+			buildConfigurationList = 4A8722A119868435001C544A /* Build configuration list for PBXProject "FudBar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -292,8 +297,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4A8722A519868435001C544A /* FüdBar */,
-				4A8722BB19868435001C544A /* FüdBarTests */,
+				4A8722A519868435001C544A /* FudBar */,
+				4A8722BB19868435001C544A /* FudBarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -382,7 +387,7 @@
 /* Begin PBXTargetDependency section */
 		4A8722BE19868435001C544A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4A8722A519868435001C544A /* FüdBar */;
+			target = 4A8722A519868435001C544A /* FudBar */;
 			targetProxy = 4A8722BD19868435001C544A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -494,10 +499,8 @@
 					"-lz",
 					"-framework",
 					QuartzCore,
-					"-framework",
-					SparkInspector,
 				);
-				PRODUCT_NAME = "FüdBar";
+				PRODUCT_NAME = FudBar;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
@@ -521,10 +524,8 @@
 					"-lz",
 					"-framework",
 					QuartzCore,
-					"-framework",
-					SparkInspector,
 				);
-				PRODUCT_NAME = "FüdBar";
+				PRODUCT_NAME = FudBar;
 				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
@@ -544,7 +545,7 @@
 				INFOPLIST_FILE = FudBarTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "FüdBarTests";
+				PRODUCT_NAME = FudBarTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Debug;
@@ -560,7 +561,7 @@
 				INFOPLIST_FILE = FudBarTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "FüdBarTests";
+				PRODUCT_NAME = FudBarTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
 			name = Release;
@@ -568,7 +569,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4A8722A119868435001C544A /* Build configuration list for PBXProject "FüdBar" */ = {
+		4A8722A119868435001C544A /* Build configuration list for PBXProject "FudBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A8722C419868435001C544A /* Debug */,
@@ -577,7 +578,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4A8722C619868435001C544A /* Build configuration list for PBXNativeTarget "FüdBar" */ = {
+		4A8722C619868435001C544A /* Build configuration list for PBXNativeTarget "FudBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A8722C719868435001C544A /* Debug */,
@@ -586,7 +587,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4A8722C919868435001C544A /* Build configuration list for PBXNativeTarget "FüdBarTests" */ = {
+		4A8722C919868435001C544A /* Build configuration list for PBXNativeTarget "FudBarTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4A8722CA19868435001C544A /* Debug */,

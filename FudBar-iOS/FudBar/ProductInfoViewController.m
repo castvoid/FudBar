@@ -10,6 +10,7 @@
 #import "UIView+AutoLayout.h"
 #import "APIRequester.h"
 #import "UIImage+resizeAndCrop.h"
+#import <MRoundedButton/MRoundedButton.h>
 
 @interface ProductInfoViewController ()
 
@@ -181,7 +182,7 @@
             keys = @[@"image"];
             break;
         case 3:
-            keys = @[@"calories"];
+            return [self object:_foodProduct doesHaveDataForKey:@"calories"] ? 2 : 0;
             break;
     }
     return [self numberOfValidKeysFromArray:keys forObject:_foodProduct];
@@ -266,20 +267,50 @@
             break;
         }
         case 3: { // Running distance
-            cell = [tableView dequeueReusableCellWithIdentifier:@"runningCell" forIndexPath:indexPath];
-            UIImageView *runnerView = (UIImageView*)[cell viewWithTag:101];
-            UILabel *distanceLabel = (UILabel*)[cell viewWithTag:102];
+            NSString *reuseID = row == 0 ? @"loggingCell" : @"runningCell";
+            cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
+            UIImageView *iconView = (UIImageView*)[cell viewWithTag:101];
+            UILabel *largeTextLabel = (UILabel*)[cell viewWithTag:102];
             
-            runnerView.image = [runnerView.image rasterizedImageWithTintColor:runnerView.tintColor];
+            iconView.image = [iconView.image rasterizedImageWithTintColor:[UIColor redColor]];
             
-            float distanceToBurnOff = [(NSNumber*)_foodProduct[@"calories"] floatValue] / 81.0;
-            NSMutableAttributedString *distanceText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1fkm",distanceToBurnOff]];
-            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:65]} range:NSMakeRange(0, distanceText.length - 2)];
-            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]} range:NSMakeRange(distanceText.length - 2, 2)];
-            [distanceLabel setAttributedText:distanceText];
+            NSString *primaryString;
+            NSString *secondaryString;
             
-            UILabel *realDistance = (UILabel*)[cell viewWithTag:103];;
-            [realDistance setText:@""];
+            if (row == 0){
+                primaryString = [(NSNumber*)_foodProduct[@"calories"] stringValue];
+                secondaryString = @"kcal";
+            } else if (row == 1){
+                float distanceToBurnOff = [(NSNumber*)_foodProduct[@"calories"] floatValue] / 81.0;
+                primaryString = [NSString stringWithFormat:@"%.1f", distanceToBurnOff];
+                secondaryString = @"km";
+            }
+            NSMutableAttributedString *distanceText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",primaryString,secondaryString]];
+            
+            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:65]}
+                                  range:NSMakeRange(0, primaryString.length)];
+            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]}
+                                  range:NSMakeRange(primaryString.length, secondaryString.length)];
+            [largeTextLabel setAttributedText:distanceText];
+            
+            if (row == 0){
+                UIView *buttonContainerView = [cell viewWithTag:107];
+                buttonContainerView.clipsToBounds = NO;
+                buttonContainerView.backgroundColor = [UIColor clearColor];
+                MRoundedButton *button = [[MRoundedButton alloc] initWithFrame:CGRectMake(0, 0, buttonContainerView.frame.size.width, buttonContainerView.frame.size.height)
+                                                                   buttonStyle:MRoundedButtonCentralImage
+                                                          appearanceIdentifier:@"2"];
+                button.cornerRadius = MRoundedButtonMaxValue;
+                button.restoreHighlightState = NO;
+                button.foregroundColor = [UIColor colorWithRed:0.839 green:0.180 blue:0.162 alpha:1.000];
+                button.foregroundAnimationColor = [UIColor colorWithRed:0.228 green:0.803 blue:0.390 alpha:1.000];
+                button.contentColor = [UIColor whiteColor];
+                button.imageView.image = [UIImage imageNamed:@"graph"];
+                
+                
+                [buttonContainerView addSubview:button];
+            }
+            
         }
         default:
             break;
