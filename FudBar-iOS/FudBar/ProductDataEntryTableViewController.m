@@ -148,7 +148,7 @@
     NSLog(@"Full image: %@\nSmall: %@\nNew: %@",NSStringFromCGSize(image.size), NSStringFromCGSize(smallImage.size), NSStringFromCGSize(newImage.size));
     
     // Upload image
-    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.1f);
+    NSData *imageData = UIImageJPEGRepresentation(newImage, 0.5f);
     
 
     PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
