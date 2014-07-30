@@ -13,5 +13,6 @@
 
 - (UIImage *)imageByCroppingToSize:(CGSize)size;
 - (UIImage *) resizeToSize:(CGSize) newSize thenCropWithRect:(CGRect) cropRect;
+- (UIImage *)rasterizedImageWithTintColor:(UIColor *)color;
 
 @end

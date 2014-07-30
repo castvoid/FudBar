@@ -7,7 +7,9 @@
 //
 
 #import "ProductInfoViewController.h"
+#import "UIView+AutoLayout.h"
 #import "APIRequester.h"
+#import "UIImage+resizeAndCrop.h"
 
 @interface ProductInfoViewController ()
 
@@ -133,6 +135,8 @@
     
 }
 
+#pragma mark - VC handling
+
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 1) { // If it is "no product identified"
         [self dismiss];
@@ -156,7 +160,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return !_foodProduct ? 0 : 3;
+    return !_foodProduct ? 0 : 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -171,7 +175,9 @@
         case 2:
             keys = @[@"image"];
             break;
-            
+        case 3:
+            keys = @[@"calories"];
+            break;
     }
     return [self numberOfValidKeysFromArray:keys forObject:_foodProduct];
 }
@@ -247,20 +253,6 @@
         }
             
         case 2: {
-            //            NSLog(@"Getting image...");
-            //
-            //            cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
-            //            PFImageView *imageView = (PFImageView*)[cell viewWithTag:2];
-            //
-            //            PFFile *imageFile = _foodProduct[@"image"];
-            //
-            //            [imageView setFile:imageFile];
-            //            [imageView loadInBackground:^(UIImage *image, NSError *error) {
-            //                //[tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            //            }];
-            //            NSLog(@"Cell size: (%fx%f) / Image size: (%fx%f)",cell.frame.size.width,cell.frame.size.height,imageView.frame.size.width,imageView.frame.size.height);
-            //            [imageView sizeToFit];
-            //            break;
             cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
             UIImageView *imageView = (UIImageView*)[cell viewWithTag:2];
             
@@ -268,7 +260,20 @@
             [imageView sizeToFit];
             break;
         }
+        case 3: { // Running distance
+            cell = [tableView dequeueReusableCellWithIdentifier:@"runningCell" forIndexPath:indexPath];
+            UIImageView *runnerView = (UIImageView*)[cell viewWithTag:101];
+            UILabel *distanceLabel = (UILabel*)[cell viewWithTag:102];
             
+            runnerView.image = [runnerView.image rasterizedImageWithTintColor:runnerView.tintColor];
+            
+            float distanceToBurnOff = [(NSNumber*)_foodProduct[@"calories"] floatValue] / 81.0;
+            NSMutableAttributedString *distanceText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.1fkm",distanceToBurnOff]];
+            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:65]} range:NSMakeRange(0, distanceText.length - 2)];
+            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]} range:NSMakeRange(distanceText.length - 2, 2)];
+            [distanceLabel setAttributedText:distanceText];
+            
+        }
         default:
             break;
     }
