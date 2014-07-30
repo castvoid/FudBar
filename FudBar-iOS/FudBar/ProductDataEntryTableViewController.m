@@ -37,9 +37,10 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    if ( ((NSString*)_object[@"barcode"]).length >= 4 && [[_object[@"barcode"] substringToIndex:4] isEqualToString:@"noDB"])
+    if ( !( ((NSString*)_object[@"barcode"]).length >= 4 && [[_object[@"barcode"] substringToIndex:4] isEqualToString:@"noDB"] )  ){
+        NSLog(@"Saving object to DB...");
         [_object saveInBackground];
-    
+    }
     if ([_delegate respondsToSelector:@selector(productInfoEntryCompleteForObject:)]){
         [_delegate productInfoEntryCompleteForObject:_object];
     }
@@ -169,6 +170,7 @@
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded && !error){
             [self.object setObject:imageFile forKey:@"image"];
+            [self.object saveInBackground];
         }
         NSLog(@"Saved image");
     }];

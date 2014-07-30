@@ -65,8 +65,13 @@
                 PFObject *object = objects[0];
                 [self updateTableWithFoodProduct:object];
             }else{
-                   NSLog(@"Product not in Füdbar database with barcode \"%@\", will query Nutritionix...", barcode);
-                [self loadProductInfoFromNutritionxForBarcode:barcode];
+                if ([[NSUserDefaults standardUserDefaults] boolForKey:@"shouldUseNutritionix"]){
+                    NSLog(@"Product not in Füdbar database with barcode \"%@\", will query Nutritionix...", barcode);
+                    [self loadProductInfoFromNutritionxForBarcode:barcode];
+                }else{
+                    NSLog(@"Product not in Füdbar database with barcode \"%@\", will prompt for input...", barcode);
+                    [self showProductEntryViewControllerForBarcode:barcode];
+                }
             }
         } else {
             // Log details of the failure
@@ -78,7 +83,7 @@
 }
 
 - (void)loadProductInfoFromNutritionxForBarcode:(NSString*)barcode{
-
+    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.nutritionix.com/v1_1/item?upc=%@&appId=***REMOVED***&appKey=***REMOVED***",barcode]];
     [APIRequester requestJSONWithURL:url andHandler:^(id data) {
         if (!data || [data[@"status_code"] isEqualToNumber:@404] || ![data objectForKey:@"brand_name"]){
