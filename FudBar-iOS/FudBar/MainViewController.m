@@ -13,12 +13,12 @@
 @import HealthKit;
 
 @interface MainViewController ()
-
 @property (nonatomic) HKHealthStore *healthStore;
-
 @end
 
 @implementation MainViewController
+
+#pragma mark - UIViewController methods
 
 - (instancetype)init{
     self = [super init];
@@ -57,6 +57,7 @@
     
     self.healthStore = [(AppDelegate*)[[UIApplication sharedApplication] delegate] healthStore];
     _calorieDisplayView.text = @"?kcal";
+    
     // Set up an HKHealthStore, asking the user for read/write permissions. The profile view controller is the
     // first view controller that's shown to the user, so we'll ask for all of the desired HealthKit permissions now.
     // In your own app, you should consider requesting permissions the first time a user wants to interact with
@@ -70,7 +71,7 @@
                 NSLog(@"You didn't allow HealthKit to access these read/write data types. In your app, try to handle this error gracefully when a user decides not to provide access. The error was: %@. If you're using a simulator, try it on a device.", error);
                 return;
             }
-//            
+            
 //            dispatch_async(dispatch_get_main_queue(), ^{
 //                // Update the user interface based on the current user's health information.
 //                [self updateUsersAge];
@@ -101,6 +102,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Barcode methods
+
 - (void) barCodeViewController:(UIViewController *)barCodeViewController didDetectBarCode:(NSString *)barCode {
     if (scannerState != kScanComplete){
         scannerState = kScanComplete;
@@ -117,13 +121,10 @@
 }
 
 - (IBAction)scanButtonPressed:(id)sender {
+    // Setup scan view
     HHBarCodeViewController *hhbvc = [HHBarCodeViewController new];
     hhbvc.delegate = self;
-    
-    
-    [self.navigationController presentViewController:hhbvc animated:YES completion:^{
-        //code
-    }];
+    [self.navigationController presentViewController:hhbvc animated:YES completion:nil];
 }
 
 - (IBAction)testBarCodeButtonPressed:(id)sender {
@@ -132,26 +133,27 @@
     [self showProductInfoForBarcode:@"50054039" animated:YES];
 }
 
-- (void)showProductInfoForBarcode:(NSString*)barcode animated:(BOOL)animated{
+- (void)showProductInfoForBarcode:(NSString*)barcode animated:(BOOL)animated {
     ProductInfoViewController *pIVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"productInfoViewController"];
     pIVC.barcode = barcode;
-//    [self.navigationController presentViewController:pIVC animated:YES completion:^{
-//        NSLog(@"Presenting product info for barcode %@",barcode);
-//    }];
+    
+    NSLog(@"Presenting product info for barcode %@",barcode);
+    
     [self.navigationController pushViewController:pIVC animated:animated];
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     NSLog(@"Pressed enter... Running query for barcode");
     
     [textField resignFirstResponder];
-    
     [self showProductInfoForBarcode:textField.text animated:YES];
     
     return YES;
 }
 
-// Returns the types of data that Fit wishes to write to HealthKit.
+
+#pragma mark - Healthkit helpers
+
 - (NSSet *)dataTypesToWrite {
     HKQuantityType *dietaryCalorieEnergyType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
 //    HKQuantityType *heightType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierHeight];
@@ -160,7 +162,6 @@
     return [NSSet setWithObjects:dietaryCalorieEnergyType, nil];
 }
 
-// Returns the types of data that Fit wishes to read from HealthKit.
 - (NSSet *)dataTypesToRead {
     HKQuantityType *dietaryCalorieEnergyType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
 //    HKQuantityType *activeEnergyBurnType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierActiveEnergyBurned];
@@ -170,7 +171,6 @@
     
     return [NSSet setWithObjects:dietaryCalorieEnergyType, nil];
 }
-
 
 - (void)fetchTotalJoulesConsumedWithCompletionHandler:(void (^)(double, NSError *))completionHandler {
     NSCalendar *calendar = [NSCalendar currentCalendar];

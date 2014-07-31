@@ -16,17 +16,17 @@
 
 @implementation ProductDataEntryTableViewController
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-{
+#pragma mark - UIViewController Methods
+
+- (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
-
+        
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     textFields = [[NSMutableDictionary alloc] init];
     // Uncomment the following line to preserve selection between presentations.
@@ -36,7 +36,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewWillDisappear:(BOOL)animated{
+- (void)viewWillDisappear:(BOOL)animated {
     if ( !( ((NSString*)_object[@"barcode"]).length >= 4 && [[_object[@"barcode"] substringToIndex:4] isEqualToString:@"noDB"] )  ){
         NSLog(@"Saving object to DB...");
         [_object saveInBackground];
@@ -46,8 +46,7 @@
     }
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -55,24 +54,21 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 3;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-//    if (section>2) return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section>2) return 0;
     NSInteger rets[] = {2,6,1};
     return rets[section];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     NSString *reuseID;
     if (section == 0 || section == 1){
         reuseID = @"fieldCell";
@@ -84,16 +80,16 @@
     
     
     if (section < 2){
-    NSArray *fields = @[
-                        @[@"productName",@"subtitle"],
-                        @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"]
-                        ];
-    UILabel *textLabel = (UILabel*)[cell viewWithTag:1];
-
+        NSArray *fields = @[
+                            @[@"productName",@"subtitle"],
+                            @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"]
+                            ];
+        UILabel *textLabel = (UILabel*)[cell viewWithTag:1];
+        
         UITextField *textField = (UITextField*)[cell viewWithTag:3];
         textField.delegate = self;
         [textFields setObject:textField forKey:fields[section][row] ];
-    
+        
         if (section == 0){
             if (row == 0) [textLabel setText:@"Product Name"];
             else if (row == 1) [textLabel setText:@"Details"];
@@ -103,12 +99,7 @@
             NSMutableAttributedString *labelText = [[NSMutableAttributedString alloc] initWithString:[(NSString*)fields[section][row] capitalizedString]];
             [labelText appendAttributedString:
              [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@" (%@)",unit]
-                                             attributes:@{
-                                                          NSForegroundColorAttributeName:[UIColor grayColor]
-                                                          }
-              ]
-             ];
-            
+                                             attributes:@{NSForegroundColorAttributeName:[UIColor grayColor]}]];
             [textLabel setAttributedText:labelText];
             [textField setPlaceholder:@"0"];
             [textField setKeyboardType:UIKeyboardTypeDecimalPad];
@@ -125,11 +116,12 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return indexPath.section < 2 ? 45 : 150;
 }
 
-#pragma mark - Other methods
+
+#pragma mark - Image handling methods
 
 - (IBAction)takePhotoButtonPressed:(id)sender {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
@@ -144,7 +136,6 @@
     // Place image picker on the screen
     [self presentViewController:imagePickerController animated:YES completion:^{}];
 }
-
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // Access the uncropped image from info dictionary
@@ -164,7 +155,7 @@
     // Upload image
     NSData *imageData = UIImageJPEGRepresentation(newImage, 0.5f);
     
-
+    
     PFFile *imageFile = [PFFile fileWithName:@"image.jpg" data:imageData];
     
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -177,8 +168,7 @@
     
 }
 
--(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width
-{
+-(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width {
     float oldWidth = sourceImage.size.width;
     float scaleFactor = i_width / oldWidth;
     
@@ -192,7 +182,10 @@
     return newImage;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+
+#pragma mark - Other methods
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
     NSArray *allKeys = [textFields allKeysForObject:textField];
     NSString *key = (NSString*)allKeys[0];
     NSLog(@"Finished editing key \"%@\".",key);

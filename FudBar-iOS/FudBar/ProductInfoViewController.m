@@ -18,6 +18,8 @@
 
 @implementation ProductInfoViewController
 
+#pragma mark - UIViewController Methods
+
 - (instancetype)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
@@ -46,6 +48,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - Data management
 
@@ -143,7 +146,8 @@
     
 }
 
-#pragma mark - VC handling
+
+#pragma mark - Alert methods
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 1) { // If it is "no product identified"
@@ -163,6 +167,7 @@
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
+
 
 #pragma mark - Table view data sonurce
 
@@ -188,24 +193,6 @@
             break;
     }
     return [self numberOfValidKeysFromArray:keys forObject:_foodProduct];
-}
-
-- (NSInteger)numberOfValidKeysFromArray:(NSArray*)array forObject:(PFObject*)object{
-    NSInteger validKeys = 0;
-    for (NSString* key in array){
-        if ([self object:object doesHaveDataForKey:key]) validKeys++;
-    }
-    return validKeys;
-}
-
-- (BOOL)object:(PFObject*)object doesHaveDataForKey:(NSString*)key{
-    id data = object[key];
-    
-    if (data == nil) return NO;
-    if (data == [NSNull null]) return NO;
-    if ([[data class] isSubclassOfClass:[NSString class]] && [(NSString*)data length] == 0) return NO;
-    
-    return YES;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -325,6 +312,22 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 1: // If not available, do not display...
+            return @"Nutritional Information";
+            
+        case 2:
+            return @"Image";
+            
+        default:
+            return nil;
+    }
+}
+
+
+#pragma mark - Other methods
+
 - (void)toggleButtonPressed: (UIButton*)button{
     if (button.selected){
         HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
@@ -341,10 +344,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
                     NSLog(@"Stored food object!!!");
-                    
-//                    NSIndexPath *indexPathForInsertedFoodItem = [NSIndexPath indexPathForRow:0 inSection:0];
-                    
-//                    [self.tableView insertRowsAtIndexPaths:@[indexPathForInsertedFoodItem] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }
                 else {
                     NSLog(@"An error occured saving the food %@. In your app, try to handle this gracefully. The error was: %@.", _foodProduct[@"productName"], error);
@@ -358,23 +357,30 @@
     }
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 1: // If not available, do not display...
-            return @"Nutritional Information";
-            
-        case 2:
-            return @"Image";
-            
-        default:
-            return nil;
-    }
-}
-
 - (void)productInfoEntryCompleteForObject:(PFObject *)object{
     NSLog(@"Updating product info");
     _foodProduct = object;
     [self updateTableWithFoodProduct:object];
+}
+
+#pragma mark - Helper methods
+
+- (NSInteger)numberOfValidKeysFromArray:(NSArray*)array forObject:(PFObject*)object{
+    NSInteger validKeys = 0;
+    for (NSString* key in array){
+        if ([self object:object doesHaveDataForKey:key]) validKeys++;
+    }
+    return validKeys;
+}
+
+- (BOOL)object:(PFObject*)object doesHaveDataForKey:(NSString*)key{
+    id data = object[key];
+    
+    if (data == nil) return NO;
+    if (data == [NSNull null]) return NO;
+    if ([[data class] isSubclassOfClass:[NSString class]] && [(NSString*)data length] == 0) return NO;
+    
+    return YES;
 }
 
 @end
