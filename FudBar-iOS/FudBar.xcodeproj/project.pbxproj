@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */; };
 		4A4B7E781989764300FAFCD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4B7E771989764300FAFCD8 /* StoreKit.framework */; };
+		4A4E1B8E19899581002544D0 /* DKCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4E1B8D19899581002544D0 /* DKCircleButton.m */; };
 		4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */; };
 		4A8722AC19868435001C544A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AB19868435001C544A /* main.m */; };
 		4A8722AF19868435001C544A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AE19868435001C544A /* AppDelegate.m */; };
@@ -50,6 +51,8 @@
 		4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resizeAndCrop.h"; sourceTree = "<group>"; };
 		4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resizeAndCrop.m"; sourceTree = "<group>"; };
 		4A4B7E771989764300FAFCD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		4A4E1B8C19899581002544D0 /* DKCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKCircleButton.h; sourceTree = "<group>"; };
+		4A4E1B8D19899581002544D0 /* DKCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKCircleButton.m; sourceTree = "<group>"; };
 		4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonWithTextUnderImage.h; sourceTree = "<group>"; };
 		4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithTextUnderImage.m; sourceTree = "<group>"; };
 		4A8722A619868435001C544A /* FudBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +186,8 @@
 				4A8722CC19868798001C544A /* HHBarCodeViewController.m */,
 				4AF12ACF1987F12700DFC589 /* UIView+AutoLayout.h */,
 				4AF12AD01987F12700DFC589 /* UIView+AutoLayout.m */,
+				4A4E1B8C19899581002544D0 /* DKCircleButton.h */,
+				4A4E1B8D19899581002544D0 /* DKCircleButton.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				4A8722AC19868435001C544A /* main.m in Sources */,
 				4AF12AD11987F12700DFC589 /* UIView+AutoLayout.m in Sources */,
 				4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */,
+				4A4E1B8E19899581002544D0 /* DKCircleButton.m in Sources */,
 				4A8722CD19868798001C544A /* HHBarCodeViewController.m in Sources */,
 				4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */,
 				4A8722D1198693C6001C544A /* ProductInfoViewController.m in Sources */,

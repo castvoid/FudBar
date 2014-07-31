@@ -10,7 +10,7 @@
 #import "UIView+AutoLayout.h"
 #import "APIRequester.h"
 #import "UIImage+resizeAndCrop.h"
-#import <MRoundedButton/MRoundedButton.h>
+#import "DKCircleButton.h"
 
 @interface ProductInfoViewController ()
 
@@ -297,18 +297,23 @@
                 UIView *buttonContainerView = [cell viewWithTag:107];
                 buttonContainerView.clipsToBounds = NO;
                 buttonContainerView.backgroundColor = [UIColor clearColor];
-                MRoundedButton *button = [[MRoundedButton alloc] initWithFrame:CGRectMake(0, 0, buttonContainerView.frame.size.width, buttonContainerView.frame.size.height)
-                                                                   buttonStyle:MRoundedButtonCentralImage
-                                                          appearanceIdentifier:@"2"];
-                button.cornerRadius = MRoundedButtonMaxValue;
-                button.restoreHighlightState = NO;
-                button.foregroundColor = [UIColor colorWithRed:0.839 green:0.180 blue:0.162 alpha:1.000];
-                button.foregroundAnimationColor = [UIColor colorWithRed:0.228 green:0.803 blue:0.390 alpha:1.000];
-                button.contentColor = [UIColor whiteColor];
-                button.imageView.image = [UIImage imageNamed:@"graph"];
-                
-                
+//                MRoundedButton *button = [[MRoundedButton alloc] initWithFrame:CGRectMake(0, 0, buttonContainerView.frame.size.width, buttonContainerView.frame.size.height)
+//                                                                   buttonStyle:MRoundedButtonCentralImage
+//                                                          appearanceIdentifier:@"2"];
+//                button.cornerRadius = MRoundedButtonMaxValue;
+//                button.restoreHighlightState = NO;
+//                button.foregroundColor = [UIColor colorWithRed:0.839 green:0.180 blue:0.162 alpha:1.000];
+//                button.foregroundAnimationColor = [UIColor colorWithRed:0.228 green:0.803 blue:0.390 alpha:1.000];
+//                button.contentColor = [UIColor whiteColor];
+//                button.imageView.image = [UIImage imageNamed:@"plus"];
+//
+//                [button setSelected:<#(BOOL)#>]
+//                [buttonContainerView addSubview:button];
+                DKCircleButton *button = [[DKCircleButton alloc] initWithFrame:CGRectMake(0, 0, buttonContainerView.frame.size.width, buttonContainerView.frame.size.height)];
+                button.backgroundColor = [UIColor redColor];
                 [buttonContainerView addSubview:button];
+                button.titleLabel.text = @"Go";
+                button.titleLabel.textColor = [UIColor redColor];
             }
             
         }

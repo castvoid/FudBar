@@ -1,5 +1,4 @@
 platform :ios, '7.0'
 
-pod "MRoundedButton", "~> 1.0"
 pod 'PNChart'
 pod 'SparkInspector'
