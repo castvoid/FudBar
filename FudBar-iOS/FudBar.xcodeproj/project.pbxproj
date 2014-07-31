@@ -86,6 +86,7 @@
 		4AB19C29198A4E5900818F13 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		4AB19C2A198A4E5900818F13 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
 		4AEBBF54198ACFFF002D8FD0 /* FudBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FudBar-Prefix.pch"; sourceTree = "<group>"; };
+		4AEBBF59198ADC9D002D8FD0 /* PrivateKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateKeys.h; sourceTree = "<group>"; };
 		4AF12AC61987AF7F00DFC589 /* APIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequester.h; sourceTree = "<group>"; };
 		4AF12AC71987AF7F00DFC589 /* APIRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequester.m; sourceTree = "<group>"; };
 		4AF12AC91987CF1000DFC589 /* ProductDataEntryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDataEntryTableViewController.h; sourceTree = "<group>"; };
@@ -179,6 +180,7 @@
 		4A8722A919868435001C544A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AEBBF59198ADC9D002D8FD0 /* PrivateKeys.h */,
 				4AB19C29198A4E5900818F13 /* ToggleButton.h */,
 				4AB19C2A198A4E5900818F13 /* ToggleButton.m */,
 				4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */,

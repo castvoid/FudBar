@@ -90,7 +90,7 @@
 
 - (void)loadProductInfoFromNutritionxForBarcode:(NSString*)barcode{
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.nutritionix.com/v1_1/item?upc=%@&appId=***REMOVED***&appKey=***REMOVED***",barcode]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.nutritionix.com/v1_1/item?upc=%@&appId=%@&appKey=%@",barcode,NUTRITIONIX_APP_ID,NUTRITIONIX_APP_KEY]];
     [APIRequester requestJSONWithURL:url andHandler:^(id data) {
         if (!data || [data[@"status_code"] isEqualToNumber:@404] || ![data objectForKey:@"brand_name"]){
             NSLog(@"Product not in Nutritionix db either, will request user data entry...");

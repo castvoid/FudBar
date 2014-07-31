@@ -24,8 +24,8 @@
     
     [PFImageView class]; // Hack to get the PFImageView to work in a storyboard
     
-    [Parse setApplicationId:@"***REMOVED***"
-                  clientKey:@"***REMOVED***"];
+    [Parse setApplicationId:PARSE_APP_ID
+                  clientKey:PARSE_CLIENT_ID];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     [self registerDefaultsFromSettingsBundle];
