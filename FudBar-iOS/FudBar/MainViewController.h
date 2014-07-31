@@ -29,6 +29,7 @@ typedef enum {
 
 @property (weak, nonatomic) IBOutlet UIButton *scanButton;
 @property (weak, nonatomic) IBOutlet UILabel *barcodeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *calorieDisplayView;
 
 @end
 

@@ -56,7 +56,7 @@
     [super viewWillAppear:animated];
     
     self.healthStore = [(AppDelegate*)[[UIApplication sharedApplication] delegate] healthStore];
-    
+    _calorieDisplayView.text = @"?kcal";
     // Set up an HKHealthStore, asking the user for read/write permissions. The profile view controller is the
     // first view controller that's shown to the user, so we'll ask for all of the desired HealthKit permissions now.
     // In your own app, you should consider requesting permissions the first time a user wants to interact with
@@ -81,8 +81,7 @@
             [self fetchTotalJoulesConsumedWithCompletionHandler:^(double totalJoulesConsumed, NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     double kCalories = (totalJoulesConsumed * 0.239005736) / 1000;
-                    
-                    NSLog(@"Consumed %.2fkcal", kCalories);
+                    _calorieDisplayView.text = [NSString stringWithFormat:@"%.0fkcal",kCalories];
                 });
             }];
         }];
@@ -130,7 +129,7 @@
 - (IBAction)testBarCodeButtonPressed:(id)sender {
     _barcodeLabel.text = _currentBarCode;
     scannerState = kReadyToScan;
-    [self showProductInfoForBarcode:@"quickTest" animated:YES];
+    [self showProductInfoForBarcode:@"50054039" animated:YES];
 }
 
 - (void)showProductInfoForBarcode:(NSString*)barcode animated:(BOOL)animated{
@@ -151,7 +150,6 @@
     
     return YES;
 }
-
 
 // Returns the types of data that Fit wishes to write to HealthKit.
 - (NSSet *)dataTypesToWrite {
