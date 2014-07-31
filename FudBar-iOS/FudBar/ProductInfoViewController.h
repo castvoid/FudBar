@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "ProductDataEntryTableViewController.h"
+#import "ToggleButton.h"
 
-@interface ProductInfoViewController : UITableViewController <UIAlertViewDelegate,ProductInfoEntryDelegate>{
+@import HealthKit;
+
+@interface ProductInfoViewController : UITableViewController <UIAlertViewDelegate,ProductInfoEntryDelegate, ToggleButtonDelegate>{
     UIImage *productImage;
 }
+
+@property (nonatomic) HKHealthStore *healthStore;
 
 @property (nonatomic) NSString* barcode;
 @property (nonatomic) PFObject *foodProduct;

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */; };
 		4A4B7E781989764300FAFCD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4B7E771989764300FAFCD8 /* StoreKit.framework */; };
-		4A4E1B8E19899581002544D0 /* DKCircleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4E1B8D19899581002544D0 /* DKCircleButton.m */; };
 		4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */; };
 		4A8722AC19868435001C544A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AB19868435001C544A /* main.m */; };
 		4A8722AF19868435001C544A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AE19868435001C544A /* AppDelegate.m */; };
@@ -30,6 +29,8 @@
 		4A8722E3198696E9001C544A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E2198696E9001C544A /* Security.framework */; };
 		4A8722E7198696FB001C544A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A8722E6198696FB001C544A /* SystemConfiguration.framework */; };
 		4A95700D1986ECC500B10D7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A95700C1986ECC500B10D7F /* Settings.bundle */; };
+		4AA0148B198A56A50066B3EA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA0148A198A56A50066B3EA /* HealthKit.framework */; };
+		4AB19C2B198A4E5900818F13 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB19C2A198A4E5900818F13 /* ToggleButton.m */; };
 		4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AC71987AF7F00DFC589 /* APIRequester.m */; };
 		4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12ACA1987CF1000DFC589 /* ProductDataEntryTableViewController.m */; };
 		4AF12AD11987F12700DFC589 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AD01987F12700DFC589 /* UIView+AutoLayout.m */; };
@@ -51,8 +52,6 @@
 		4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resizeAndCrop.h"; sourceTree = "<group>"; };
 		4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resizeAndCrop.m"; sourceTree = "<group>"; };
 		4A4B7E771989764300FAFCD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		4A4E1B8C19899581002544D0 /* DKCircleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKCircleButton.h; sourceTree = "<group>"; };
-		4A4E1B8D19899581002544D0 /* DKCircleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKCircleButton.m; sourceTree = "<group>"; };
 		4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonWithTextUnderImage.h; sourceTree = "<group>"; };
 		4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithTextUnderImage.m; sourceTree = "<group>"; };
 		4A8722A619868435001C544A /* FudBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +81,10 @@
 		4A8722E2198696E9001C544A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		4A8722E6198696FB001C544A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4A95700C1986ECC500B10D7F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
+		4AA01489198A56A50066B3EA /* FudBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FudBar.entitlements; sourceTree = "<group>"; };
+		4AA0148A198A56A50066B3EA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		4AB19C29198A4E5900818F13 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
+		4AB19C2A198A4E5900818F13 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
 		4AF12AC61987AF7F00DFC589 /* APIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequester.h; sourceTree = "<group>"; };
 		4AF12AC71987AF7F00DFC589 /* APIRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequester.m; sourceTree = "<group>"; };
 		4AF12AC91987CF1000DFC589 /* ProductDataEntryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDataEntryTableViewController.h; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 				4A8722DF198696DD001C544A /* MobileCoreServices.framework in Frameworks */,
 				4A8722DD198696D5001C544A /* libz.dylib in Frameworks */,
 				4A8722DB198696C9001C544A /* CoreLocation.framework in Frameworks */,
+				4AA0148B198A56A50066B3EA /* HealthKit.framework in Frameworks */,
 				4A8722D9198696C4001C544A /* CoreGraphics.framework in Frameworks */,
 				4A8722D7198696BE001C544A /* CFNetwork.framework in Frameworks */,
 				4A8722D5198696B9001C544A /* AudioToolbox.framework in Frameworks */,
@@ -124,6 +128,7 @@
 		35BF4C6022F342618955D918 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4AA0148A198A56A50066B3EA /* HealthKit.framework */,
 				4A4B7E771989764300FAFCD8 /* StoreKit.framework */,
 				11ACA597A97A406FA2E0FA53 /* libPods.a */,
 			);
@@ -153,6 +158,7 @@
 		4A8722A819868435001C544A /* FudBar */ = {
 			isa = PBXGroup;
 			children = (
+				4AA01489198A56A50066B3EA /* FudBar.entitlements */,
 				4A8722E819869714001C544A /* Frameworks */,
 				4A8722AD19868435001C544A /* AppDelegate.h */,
 				4A8722AE19868435001C544A /* AppDelegate.m */,
@@ -172,6 +178,8 @@
 		4A8722A919868435001C544A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AB19C29198A4E5900818F13 /* ToggleButton.h */,
+				4AB19C2A198A4E5900818F13 /* ToggleButton.m */,
 				4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */,
 				4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */,
 				4AF12AC61987AF7F00DFC589 /* APIRequester.h */,
@@ -186,8 +194,6 @@
 				4A8722CC19868798001C544A /* HHBarCodeViewController.m */,
 				4AF12ACF1987F12700DFC589 /* UIView+AutoLayout.h */,
 				4AF12AD01987F12700DFC589 /* UIView+AutoLayout.m */,
-				4A4E1B8C19899581002544D0 /* DKCircleButton.h */,
-				4A4E1B8D19899581002544D0 /* DKCircleButton.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -278,6 +284,9 @@
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = X9V6223Q5A;
 						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
 							com.apple.InAppPurchase = {
 								enabled = 1;
 							};
@@ -368,12 +377,12 @@
 			files = (
 				4A8722B219868435001C544A /* MainViewController.m in Sources */,
 				4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */,
+				4AB19C2B198A4E5900818F13 /* ToggleButton.m in Sources */,
 				4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */,
 				4A8722AF19868435001C544A /* AppDelegate.m in Sources */,
 				4A8722AC19868435001C544A /* main.m in Sources */,
 				4AF12AD11987F12700DFC589 /* UIView+AutoLayout.m in Sources */,
 				4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */,
-				4A4E1B8E19899581002544D0 /* DKCircleButton.m in Sources */,
 				4A8722CD19868798001C544A /* HHBarCodeViewController.m in Sources */,
 				4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */,
 				4A8722D1198693C6001C544A /* ProductInfoViewController.m in Sources */,
@@ -492,6 +501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = FudBar/FudBar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -517,6 +527,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = FudBar/FudBar.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

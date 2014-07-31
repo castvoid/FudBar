@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
@@ -27,7 +27,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7l-bA-dCB">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X7l-bA-dCB">
                                 <rect key="frame" x="174" y="249" width="253" height="102"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <state key="normal" title="Scan Barcode" image="Barcode">
@@ -57,7 +57,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type barcode" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qV0-8u-pYh">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type barcode" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qV0-8u-pYh">
                                 <rect key="frame" x="213" y="199" width="175" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jCo-Z3-fCY"/>
@@ -271,24 +271,24 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <view tag="107" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXv-a7-Owb" userLabel="Add button">
+                                        <button opaque="NO" tag="107" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ilV-Br-Lil" customClass="ToggleButton">
                                             <rect key="frame" x="520" y="45" width="60" height="60"/>
-                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.00099119386943635757" green="1" blue="0.16727431561182682" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="FAF-ss-afe"/>
-                                                <constraint firstAttribute="width" constant="60" id="wol-tj-lvX"/>
+                                                <constraint firstAttribute="height" constant="60" id="2tM-HY-INp"/>
+                                                <constraint firstAttribute="width" constant="60" id="Dd5-yc-Te9"/>
                                             </constraints>
-                                        </view>
+                                            <state key="normal" image="plus"/>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="AtJ-Fv-ehL" firstAttribute="leading" secondItem="DsQ-Lf-dYV" secondAttribute="trailing" constant="8" id="BbY-z7-d6e"/>
                                         <constraint firstAttribute="centerY" secondItem="DsQ-Lf-dYV" secondAttribute="centerY" id="GOy-K9-3TD"/>
+                                        <constraint firstAttribute="trailing" secondItem="ilV-Br-Lil" secondAttribute="trailing" constant="20" id="JBg-tl-nyS"/>
                                         <constraint firstAttribute="trailing" secondItem="2MV-km-hhR" secondAttribute="trailing" id="OTu-aV-Irf"/>
-                                        <constraint firstAttribute="trailing" secondItem="OXv-a7-Owb" secondAttribute="trailing" constant="20" symbolic="YES" id="Pxg-fy-7vf"/>
-                                        <constraint firstAttribute="centerY" secondItem="OXv-a7-Owb" secondAttribute="centerY" id="Uv3-Tw-efF"/>
                                         <constraint firstItem="2MV-km-hhR" firstAttribute="top" secondItem="AXg-Hd-cUS" secondAttribute="top" priority="999" constant="10" id="b0j-Oq-3TD"/>
+                                        <constraint firstAttribute="centerY" secondItem="ilV-Br-Lil" secondAttribute="centerY" id="dbo-cY-l15"/>
                                         <constraint firstItem="2MV-km-hhR" firstAttribute="leading" secondItem="DsQ-Lf-dYV" secondAttribute="trailing" constant="8" id="ekz-5g-DjJ"/>
-                                        <constraint firstItem="AtJ-Fv-ehL" firstAttribute="centerY" secondItem="OXv-a7-Owb" secondAttribute="centerY" id="hpu-gx-YMy"/>
                                         <constraint firstItem="AtJ-Fv-ehL" firstAttribute="top" secondItem="2MV-km-hhR" secondAttribute="bottom" priority="998" id="k7m-KQ-o1m">
                                             <variation key="widthClass=compact" constant="5"/>
                                         </constraint>
@@ -296,11 +296,11 @@
                                             <variation key="widthClass=compact" constant="5"/>
                                         </constraint>
                                         <constraint firstItem="DsQ-Lf-dYV" firstAttribute="leading" secondItem="AXg-Hd-cUS" secondAttribute="leading" constant="20" symbolic="YES" id="xW4-JJ-Lna"/>
-                                        <constraint firstItem="OXv-a7-Owb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AtJ-Fv-ehL" secondAttribute="trailing" priority="999" constant="2" id="yeH-6a-uCl"/>
+                                        <constraint firstItem="ilV-Br-Lil" firstAttribute="centerY" secondItem="AtJ-Fv-ehL" secondAttribute="centerY" id="xtY-nU-RJt"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="Uv3-Tw-efF"/>
+                                            <exclude reference="dbo-cY-l15"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -392,7 +392,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NiA-wV-AMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="118"/>
+            <point key="canvasLocation" x="1541" y="116"/>
         </scene>
         <!--Product Data Entry Table View Controller-->
         <scene sceneID="5k9-k8-bLi">
@@ -517,6 +517,7 @@
     <resources>
         <image name="Barcode" width="150" height="102"/>
         <image name="graph" width="60" height="60"/>
+        <image name="plus" width="40" height="40"/>
         <image name="runner" width="60" height="60"/>
     </resources>
 </document>

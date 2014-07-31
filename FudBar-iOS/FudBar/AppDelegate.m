@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 
+
+
 @interface AppDelegate ()
-            
 
 @end
 
@@ -18,6 +19,7 @@
             
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    self.healthStore = [[HKHealthStore alloc] init];
     
     [PFImageView class]; // Hack to get the image view to work in storyboard
     

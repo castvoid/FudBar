@@ -10,7 +10,7 @@
 #import "UIView+AutoLayout.h"
 #import "APIRequester.h"
 #import "UIImage+resizeAndCrop.h"
-#import "DKCircleButton.h"
+#import "AppDelegate.h"
 
 @interface ProductInfoViewController ()
 
@@ -27,6 +27,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.healthStore = [(AppDelegate*)[[UIApplication sharedApplication] delegate] healthStore];
+    
     
 }
 
@@ -151,7 +153,7 @@
     }
 }
 
-- (void) dismiss {
+- (void)dismiss {
     if (self.navigationController) {
         if ([self.navigationController.viewControllers lastObject] == self) {
             [self.navigationController popViewControllerAnimated:YES];
@@ -294,26 +296,22 @@
             [largeTextLabel setAttributedText:distanceText];
             
             if (row == 0){
-                UIView *buttonContainerView = [cell viewWithTag:107];
-                buttonContainerView.clipsToBounds = NO;
-                buttonContainerView.backgroundColor = [UIColor clearColor];
-//                MRoundedButton *button = [[MRoundedButton alloc] initWithFrame:CGRectMake(0, 0, buttonContainerView.frame.size.width, buttonContainerView.frame.size.height)
-//                                                                   buttonStyle:MRoundedButtonCentralImage
-//                                                          appearanceIdentifier:@"2"];
-//                button.cornerRadius = MRoundedButtonMaxValue;
-//                button.restoreHighlightState = NO;
-//                button.foregroundColor = [UIColor colorWithRed:0.839 green:0.180 blue:0.162 alpha:1.000];
-//                button.foregroundAnimationColor = [UIColor colorWithRed:0.228 green:0.803 blue:0.390 alpha:1.000];
-//                button.contentColor = [UIColor whiteColor];
-//                button.imageView.image = [UIImage imageNamed:@"plus"];
-//
-//                [button setSelected:<#(BOOL)#>]
-//                [buttonContainerView addSubview:button];
-                DKCircleButton *button = [[DKCircleButton alloc] initWithFrame:CGRectMake(0, 0, buttonContainerView.frame.size.width, buttonContainerView.frame.size.height)];
-                button.backgroundColor = [UIColor redColor];
-                [buttonContainerView addSubview:button];
-                button.titleLabel.text = @"Go";
-                button.titleLabel.textColor = [UIColor redColor];
+                ToggleButton *button = (ToggleButton*)[cell viewWithTag:107];
+                button.delegate = self;
+                button.tintColor = [UIColor whiteColor];
+                button.layer.cornerRadius = 30;
+                button.layer.masksToBounds = YES;
+                
+                [button setColor:self.view.tintColor forState:UIControlStateNormal];
+                [button setColor:[UIColor greenColor] forState:UIControlStateSelected];
+                
+                UIImage *plus = [[UIImage imageNamed:@"plus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [button setImage:plus forState:UIControlStateNormal];
+                
+                UIImage *tick = [[UIImage imageNamed:@"tick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                [button setImage:tick forState:UIControlStateSelected];
+                
+//                [button addTarget:self action:@selector(toggleStoringCalories) forControlEvents:UIControlEventTouchDown];
             }
             
         }
@@ -325,6 +323,39 @@
     // Configure the cell...
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
+}
+
+- (void)toggleButtonPressed: (UIButton*)button{
+    if (button.selected){
+        HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
+        
+        HKQuantity *quantity = [HKQuantity quantityWithUnit:[HKUnit calorieUnit] doubleValue:[_foodProduct[@"calories"] floatValue]*1000];
+        
+        NSDate *now = [NSDate date];
+        
+        NSDictionary *metadata = @{ HKMetadataKeyFoodType:_foodProduct[@"productName"] };
+        
+        HKQuantitySample *calorieSample = [HKQuantitySample quantitySampleWithType:quantityType quantity:quantity startDate:now endDate:now metadata:metadata];
+        
+        [self.healthStore saveObject:calorieSample withCompletion:^(BOOL success, NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (success) {
+                    NSLog(@"Stored food object!!!");
+                    
+//                    NSIndexPath *indexPathForInsertedFoodItem = [NSIndexPath indexPathForRow:0 inSection:0];
+                    
+//                    [self.tableView insertRowsAtIndexPaths:@[indexPathForInsertedFoodItem] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+                else {
+                    NSLog(@"An error occured saving the food %@. In your app, try to handle this gracefully. The error was: %@.", _foodProduct[@"productName"], error);
+                    abort();
+                }
+            });
+        }];
+        
+    }else{
+        
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
