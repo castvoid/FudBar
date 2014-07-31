@@ -85,6 +85,7 @@
 		4AA0148A198A56A50066B3EA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4AB19C29198A4E5900818F13 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		4AB19C2A198A4E5900818F13 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
+		4AEBBF54198ACFFF002D8FD0 /* FudBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FudBar-Prefix.pch"; sourceTree = "<group>"; };
 		4AF12AC61987AF7F00DFC589 /* APIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequester.h; sourceTree = "<group>"; };
 		4AF12AC71987AF7F00DFC589 /* APIRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIRequester.m; sourceTree = "<group>"; };
 		4AF12AC91987CF1000DFC589 /* ProductDataEntryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductDataEntryTableViewController.h; sourceTree = "<group>"; };
@@ -190,6 +191,7 @@
 				4A8722D219869696001C544A /* Parse.framework */,
 				4A8722AA19868435001C544A /* Info.plist */,
 				4A8722AB19868435001C544A /* main.m */,
+				4AEBBF54198ACFFF002D8FD0 /* FudBar-Prefix.pch */,
 				4A8722CE198687AB001C544A /* HHBarCodeViewController.h */,
 				4A8722CC19868798001C544A /* HHBarCodeViewController.m */,
 				4AF12ACF1987F12700DFC589 /* UIView+AutoLayout.h */,
@@ -508,6 +510,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FudBar",
 				);
+				GCC_PREFIX_HEADER = "FudBar/FudBar-Prefix.pch";
 				INFOPLIST_FILE = FudBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -534,6 +537,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FudBar",
 				);
+				GCC_PREFIX_HEADER = "FudBar/FudBar-Prefix.pch";
 				INFOPLIST_FILE = FudBar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
