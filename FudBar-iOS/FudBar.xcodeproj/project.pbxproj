@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */; };
+		4A27675E198B9E0A005AB834 /* AAPLJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A27675D198B9E0A005AB834 /* AAPLJournalViewController.m */; };
+		4A276761198B9E28005AB834 /* AAPLFoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A276760198B9E28005AB834 /* AAPLFoodItem.m */; };
 		4A4B7E781989764300FAFCD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4B7E771989764300FAFCD8 /* StoreKit.framework */; };
 		4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */; };
 		4A8722AC19868435001C544A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AB19868435001C544A /* main.m */; };
@@ -51,6 +53,10 @@
 		11ACA597A97A406FA2E0FA53 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A26C2201988F912004D5BBD /* UIImage+resizeAndCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+resizeAndCrop.h"; sourceTree = "<group>"; };
 		4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+resizeAndCrop.m"; sourceTree = "<group>"; };
+		4A27675C198B9E0A005AB834 /* AAPLJournalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLJournalViewController.h; sourceTree = "<group>"; };
+		4A27675D198B9E0A005AB834 /* AAPLJournalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLJournalViewController.m; sourceTree = "<group>"; };
+		4A27675F198B9E28005AB834 /* AAPLFoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLFoodItem.h; sourceTree = "<group>"; };
+		4A276760198B9E28005AB834 /* AAPLFoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLFoodItem.m; sourceTree = "<group>"; };
 		4A4B7E771989764300FAFCD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonWithTextUnderImage.h; sourceTree = "<group>"; };
 		4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithTextUnderImage.m; sourceTree = "<group>"; };
@@ -171,6 +177,10 @@
 				4AF12ACA1987CF1000DFC589 /* ProductDataEntryTableViewController.m */,
 				4A8722CF198693C6001C544A /* ProductInfoViewController.h */,
 				4A8722D0198693C6001C544A /* ProductInfoViewController.m */,
+				4A27675C198B9E0A005AB834 /* AAPLJournalViewController.h */,
+				4A27675D198B9E0A005AB834 /* AAPLJournalViewController.m */,
+				4A27675F198B9E28005AB834 /* AAPLFoodItem.h */,
+				4A276760198B9E28005AB834 /* AAPLFoodItem.m */,
 				4A8722B619868435001C544A /* Images.xcassets */,
 				4A8722A919868435001C544A /* Supporting Files */,
 			);
@@ -382,6 +392,7 @@
 				4A8722B219868435001C544A /* MainViewController.m in Sources */,
 				4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */,
 				4AB19C2B198A4E5900818F13 /* ToggleButton.m in Sources */,
+				4A276761198B9E28005AB834 /* AAPLFoodItem.m in Sources */,
 				4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */,
 				4A8722AF19868435001C544A /* AppDelegate.m in Sources */,
 				4A8722AC19868435001C544A /* main.m in Sources */,
@@ -389,6 +400,7 @@
 				4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */,
 				4A8722CD19868798001C544A /* HHBarCodeViewController.m in Sources */,
 				4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */,
+				4A27675E198B9E0A005AB834 /* AAPLJournalViewController.m in Sources */,
 				4A8722D1198693C6001C544A /* ProductInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
