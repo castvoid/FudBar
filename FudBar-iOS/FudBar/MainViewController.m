@@ -31,6 +31,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
     scannerState = kReadyToScan;
     
     [_manualBarcodeEntryField setDelegate:self];
@@ -79,12 +82,7 @@
 //                [self updateUsersWeight];
 //            });
             
-            [self fetchTotalJoulesConsumedWithCompletionHandler:^(double totalJoulesConsumed, NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    double kCalories = (totalJoulesConsumed * 0.239005736) / 1000;
-                    _calorieDisplayView.text = [NSString stringWithFormat:@"%.0fkcal",kCalories];
-                });
-            }];
+            [self updateCalorieCount];
         }];
     }
     
@@ -102,6 +100,33 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)applicationWillEnterForeground:(NSNotification *)notification{
+    [self updateCalorieCount];
+}
+
+#pragma mark - UIView methods
+
+- (void)updateCalorieCount{
+    [self fetchTotalJoulesConsumedWithCompletionHandler:^(double totalJoulesConsumed, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            double kCalories = (totalJoulesConsumed * 0.239005736) / 1000;
+            self.calorieDisplayView.text = [NSString stringWithFormat:@"%.0fkcal",kCalories];
+        });
+    }];
+}
+
+- (IBAction)scanButtonPressed:(id)sender {
+    // Setup scan view
+    HHBarCodeViewController *hhbvc = [HHBarCodeViewController new];
+    hhbvc.delegate = self;
+    [self.navigationController presentViewController:hhbvc animated:YES completion:nil];
+}
+
+- (IBAction)testBarCodeButtonPressed:(id)sender {
+    _barcodeLabel.text = _currentBarCode;
+    scannerState = kReadyToScan;
+    [self showProductInfoForBarcode:@"50054039" animated:YES];
+}
 
 #pragma mark - Barcode methods
 
@@ -118,19 +143,6 @@
             scannerState = kReadyToScan;
         }];
     }
-}
-
-- (IBAction)scanButtonPressed:(id)sender {
-    // Setup scan view
-    HHBarCodeViewController *hhbvc = [HHBarCodeViewController new];
-    hhbvc.delegate = self;
-    [self.navigationController presentViewController:hhbvc animated:YES completion:nil];
-}
-
-- (IBAction)testBarCodeButtonPressed:(id)sender {
-    _barcodeLabel.text = _currentBarCode;
-    scannerState = kReadyToScan;
-    [self showProductInfoForBarcode:@"50054039" animated:YES];
 }
 
 - (void)showProductInfoForBarcode:(NSString*)barcode animated:(BOOL)animated {
