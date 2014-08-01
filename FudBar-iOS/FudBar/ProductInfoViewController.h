@@ -17,8 +17,6 @@
     UIImage *productImage;
 }
 
-@property (nonatomic) HKHealthStore *healthStore;
-
 @property (nonatomic) NSString* barcode;
 @property (nonatomic) PFObject *foodProduct;
 

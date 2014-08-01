@@ -14,6 +14,9 @@
 
 @interface ProductInfoViewController ()
 
+@property (nonatomic) HKHealthStore *healthStore;
+@property (nonatomic) HKObject *savedObject;
+
 @end
 
 @implementation ProductInfoViewController
@@ -37,6 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadFoodProductForBarcode:_barcode];
+    _savedObject = nil;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -343,17 +347,22 @@
         [self.healthStore saveObject:calorieSample withCompletion:^(BOOL success, NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (success) {
-                    NSLog(@"Stored food object!!!");
+                    NSLog(@"Stored food object ot HealthKit!");
+                    self.savedObject = calorieSample;
                 }
                 else {
                     NSLog(@"An error occured saving the food %@. In your app, try to handle this gracefully. The error was: %@.", _foodProduct[@"productName"], error);
-                    abort();
                 }
             });
         }];
         
     }else{
-        
+        if (self.savedObject != nil){
+            [self.healthStore deleteObject:self.savedObject withCompletion:^(BOOL success, NSError *error) {
+                self.savedObject = nil;
+                NSLog(@"Removed object from healthkit.");
+            }];
+        }
     }
 }
 
