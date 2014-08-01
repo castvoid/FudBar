@@ -32,6 +32,7 @@
 		4A95700D1986ECC500B10D7F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4A95700C1986ECC500B10D7F /* Settings.bundle */; };
 		4AA0148B198A56A50066B3EA /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA0148A198A56A50066B3EA /* HealthKit.framework */; };
 		4AB19C2B198A4E5900818F13 /* ToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB19C2A198A4E5900818F13 /* ToggleButton.m */; };
+		4AB2F8C9198C463A00D20F6A /* NSDictionary+allKeysMatching.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB2F8C8198C463A00D20F6A /* NSDictionary+allKeysMatching.m */; };
 		4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AC71987AF7F00DFC589 /* APIRequester.m */; };
 		4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12ACA1987CF1000DFC589 /* ProductDataEntryTableViewController.m */; };
 		4AF12AD11987F12700DFC589 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AF12AD01987F12700DFC589 /* UIView+AutoLayout.m */; };
@@ -89,6 +90,8 @@
 		4AA0148A198A56A50066B3EA /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		4AB19C29198A4E5900818F13 /* ToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToggleButton.h; sourceTree = "<group>"; };
 		4AB19C2A198A4E5900818F13 /* ToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToggleButton.m; sourceTree = "<group>"; };
+		4AB2F8C7198C463A00D20F6A /* NSDictionary+allKeysMatching.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+allKeysMatching.h"; sourceTree = "<group>"; };
+		4AB2F8C8198C463A00D20F6A /* NSDictionary+allKeysMatching.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+allKeysMatching.m"; sourceTree = "<group>"; };
 		4AEBBF54198ACFFF002D8FD0 /* FudBar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FudBar-Prefix.pch"; sourceTree = "<group>"; };
 		4AEBBF59198ADC9D002D8FD0 /* PrivateKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateKeys.h; sourceTree = "<group>"; };
 		4AF12AC61987AF7F00DFC589 /* APIRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIRequester.h; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 		4A8722A919868435001C544A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AB2F8C7198C463A00D20F6A /* NSDictionary+allKeysMatching.h */,
+				4AB2F8C8198C463A00D20F6A /* NSDictionary+allKeysMatching.m */,
 				4AEBBF59198ADC9D002D8FD0 /* PrivateKeys.h */,
 				4AB19C29198A4E5900818F13 /* ToggleButton.h */,
 				4AB19C2A198A4E5900818F13 /* ToggleButton.m */,
@@ -394,6 +399,7 @@
 				4A8722AC19868435001C544A /* main.m in Sources */,
 				4AF12AD11987F12700DFC589 /* UIView+AutoLayout.m in Sources */,
 				4AF12ACB1987CF1000DFC589 /* ProductDataEntryTableViewController.m in Sources */,
+				4AB2F8C9198C463A00D20F6A /* NSDictionary+allKeysMatching.m in Sources */,
 				4A8722CD19868798001C544A /* HHBarCodeViewController.m in Sources */,
 				4AF12AC81987AF7F00DFC589 /* APIRequester.m in Sources */,
 				4A27675E198B9E0A005AB834 /* AAPLJournalViewController.m in Sources */,

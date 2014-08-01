@@ -11,11 +11,13 @@
 #import "APIRequester.h"
 #import "UIImage+resizeAndCrop.h"
 #import "AppDelegate.h"
+#import "NSDictionary+allKeysMatching.h"
 
 @interface ProductInfoViewController ()
 
 @property (nonatomic) HKHealthStore *healthStore;
 @property (nonatomic) NSMutableSet *savedObjects;
+@property (nonatomic) NSDictionary *healthyFoods;
 
 @end
 
@@ -43,6 +45,28 @@
     [super viewDidLoad];
     [self loadFoodProductForBarcode:_barcode];
     _savedObjects = [[NSMutableSet alloc] init];
+    
+    self.healthyFoods = @{
+                          @"foods":@{
+                                  @"lowCal":@{
+                                          @"Carrots & Hummus": @100,
+                                          @"an Apple":@72,
+                                          @"a Fruit Yogourt":@95
+                                          },
+                                  @"highCal":@{
+                                          @"an Asian chicken salad": @109,
+                                          @"a Tuna rice salad":@328,
+                                          @"a Spicy couscous salad":@317,
+                                          @"a Moroccan chickpea soup":@149
+                                          }
+                                  },
+                          @"drinks":@{
+                                  @"Green Tea": @0,
+                                  @"Orange Juice":@45,
+                                  @"an Iced Tea":@90
+                                  }
+                          };
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -278,7 +302,51 @@
             }else if (row == 2){
                 UILabel *textLabel = (UILabel*)[cell viewWithTag:112];
                 NSLog(@"Setting up alternate food cell");
-                NSString *text = @"Eating Carrots and Hummus instead would save you 327kcal (thats 1.4km of running!)";
+                
+                NSString *combinedTitles = [NSString stringWithFormat:@"%@ %@ ", _foodProduct[@"productName"], _foodProduct[@"subtitle"]].lowercaseString;
+                
+                BOOL isFood = !( [combinedTitles containsString:@"ml "] || [combinedTitles containsString:@"drink"] || [combinedTitles containsString:@"soda"] || [combinedTitles containsString:@"juice"] );
+                
+                NSDictionary *altProductsDictionary;
+                CGFloat foodCalories = [_foodProduct[@"calories"] floatValue];
+                
+                
+                if (isFood){
+                    if (foodCalories > 300){
+                        altProductsDictionary = _healthyFoods[@"foods"][@"highCal"];
+                    }else{
+                        altProductsDictionary = _healthyFoods[@"foods"][@"lowCal"];
+                    }
+                }else{
+                    altProductsDictionary = _healthyFoods[@"drinks"];
+                }
+                CGFloat altFoodCalories;
+                NSString *foodTitle;
+                
+                NSArray *validKeys = [altProductsDictionary allKeysWhereObjectComparisonWith:@(foodCalories)
+                                                                                   ResultsIn:NSOrderedAscending];
+//                NSLog(@"Valid keys: %@", validKeys.description);
+                if (validKeys.count > 0){
+                    foodTitle = validKeys[arc4random() % validKeys.count];
+                    altFoodCalories = [(NSNumber*)[altProductsDictionary valueForKey:foodTitle] floatValue];
+                }else{
+                    isFood = NO;
+                    foodTitle = @"water";
+                    altFoodCalories = 0;
+                }
+                
+                
+                CGFloat caloriesSaved = foodCalories - altFoodCalories;
+                CGFloat kmOfRunning = caloriesSaved / 81.0;
+                
+                NSString *text = [NSString stringWithFormat:@"%@ %@ instead would save you %.0fkcal - %.1fkm of running!",
+                                  isFood ? @"Eating" : @"Drinking",
+                                  foodTitle,
+                                  caloriesSaved,
+                                  kmOfRunning
+                                  ];
+                
+//                NSString *text = @"%@ Carrots and Hummus instead would save you 327kcal (thats 1.4km of running!)";
                 [textLabel setText:text];
             }
             
