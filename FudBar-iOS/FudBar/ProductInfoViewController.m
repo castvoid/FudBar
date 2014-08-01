@@ -152,7 +152,7 @@
         [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             NSLog(@"Got image data");
             productImage = [UIImage imageWithData:data];
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:3]] withRowAnimation:UITableViewRowAnimationAutomatic];
         }];
     }
     [[self tableView] reloadData];
@@ -196,13 +196,13 @@
             keys = @[@"productName",@"subtitle"];
             break;
         case 1:
-            keys = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
+            return [self object:_foodProduct doesHaveDataForKey:@"calories"] ? 3 : 0;
             break;
         case 2:
-            keys = @[@"image"];
+            keys = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
             break;
         case 3:
-            return [self object:_foodProduct doesHaveDataForKey:@"calories"] ? 3 : 0;
+            keys = @[@"image"];
             break;
     }
     return [self numberOfValidKeysFromArray:keys forObject:_foodProduct];
@@ -227,48 +227,7 @@
             
             break;
         }
-            
-        case 1: { // Nutrition Info
-            
-            NSArray *fields = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
-            NSArray *units = @[@"kcal",@"g",@"g",@"g",@"g",@"g"];
-            
-            for (int i = 0; i <= row; i++){
-                if (![self object:_foodProduct doesHaveDataForKey:fields[i]]){
-                    row++;
-                }
-            }
-            
-            NSString *fieldName = [fields objectAtIndex:row];
-            NSNumber *rawNumber = _foodProduct[fieldName];
-            
-            if (rawNumber == nil){
-                rawNumber = @0;
-            }
-            cell = [tableView dequeueReusableCellWithIdentifier:@"rightDetail" forIndexPath:indexPath];
-            
-            
-            NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
-            [fmt setPositiveFormat:@"0.##"];
-            
-            NSString *value = [NSString stringWithFormat:@"%@%@",[fmt stringFromNumber:rawNumber],units[row]];
-            NSString *title = [fieldName capitalizedString];
-            
-            [[cell textLabel] setText:title];
-            [[cell detailTextLabel] setText:value];
-            
-            break;
-        }
-            
-        case 2: {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
-            UIImageView *imageView = (UIImageView*)[cell viewWithTag:2];
-            
-            [imageView setImage:productImage];
-            [imageView sizeToFit];
-            break;
-        }
-        case 3: { // Running distance
+        case 1: { // Running distance
             
             NSString *reuseID = @[@"loggingCell",@"runningCell",@"altCell"][row];
             cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
@@ -324,6 +283,47 @@
             }
             
         }
+            
+        case 2: { // Nutrition Info
+            
+            NSArray *fields = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
+            NSArray *units = @[@"kcal",@"g",@"g",@"g",@"g",@"g"];
+            
+            for (int i = 0; i <= row; i++){
+                if (![self object:_foodProduct doesHaveDataForKey:fields[i]]){
+                    row++;
+                }
+            }
+            
+            NSString *fieldName = [fields objectAtIndex:row];
+            NSNumber *rawNumber = _foodProduct[fieldName];
+            
+            if (rawNumber == nil){
+                rawNumber = @0;
+            }
+            cell = [tableView dequeueReusableCellWithIdentifier:@"rightDetail" forIndexPath:indexPath];
+            
+            
+            NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
+            [fmt setPositiveFormat:@"0.##"];
+            
+            NSString *value = [NSString stringWithFormat:@"%@%@",[fmt stringFromNumber:rawNumber],units[row]];
+            NSString *title = [fieldName capitalizedString];
+            
+            [[cell textLabel] setText:title];
+            [[cell detailTextLabel] setText:value];
+            
+            break;
+        }
+            
+        case 3: {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"image" forIndexPath:indexPath];
+            UIImageView *imageView = (UIImageView*)[cell viewWithTag:2];
+            
+            [imageView setImage:productImage];
+            [imageView sizeToFit];
+            break;
+        }
         default:
             break;
     }
@@ -336,10 +336,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
-        case 1: // If not available, do not display...
+        case 2: // If not available, do not display...
             return @"Nutritional Information";
             
-        case 2:
+        case 3:
             return @"Image";
             
         default:
