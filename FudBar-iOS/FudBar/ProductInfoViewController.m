@@ -193,7 +193,7 @@
             keys = @[@"image"];
             break;
         case 3:
-            return [self object:_foodProduct doesHaveDataForKey:@"calories"] ? 2 : 0;
+            return [self object:_foodProduct doesHaveDataForKey:@"calories"] ? 3 : 0;
             break;
     }
     return [self numberOfValidKeysFromArray:keys forObject:_foodProduct];
@@ -260,49 +260,58 @@
             break;
         }
         case 3: { // Running distance
-            NSString *reuseID = row == 0 ? @"loggingCell" : @"runningCell";
+            
+            NSString *reuseID = @[@"loggingCell",@"runningCell",@"altCell"][row];
             cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
-            UIImageView *iconView = (UIImageView*)[cell viewWithTag:101];
-            UILabel *largeTextLabel = (UILabel*)[cell viewWithTag:102];
             
-            iconView.image = [iconView.image rasterizedImageWithTintColor:[UIColor redColor]];
-            
-            NSString *primaryString;
-            NSString *secondaryString;
-            
-            if (row == 0){
-                primaryString = [(NSNumber*)_foodProduct[@"calories"] stringValue];
-                secondaryString = @"kcal";
-            } else if (row == 1){
-                float distanceToBurnOff = [(NSNumber*)_foodProduct[@"calories"] floatValue] / 81.0;
-                primaryString = [NSString stringWithFormat:@"%.1f", distanceToBurnOff];
-                secondaryString = @"km";
-            }
-            NSMutableAttributedString *distanceText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",primaryString,secondaryString]];
-            
-            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:65]}
-                                  range:NSMakeRange(0, primaryString.length)];
-            [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]}
-                                  range:NSMakeRange(primaryString.length, secondaryString.length)];
-            [largeTextLabel setAttributedText:distanceText];
-            
-            if (row == 0){
-                ToggleButton *button = (ToggleButton*)[cell viewWithTag:107];
-                button.delegate = self;
-                button.tintColor = [UIColor whiteColor];
-                button.layer.cornerRadius = 30;
-                button.layer.masksToBounds = YES;
+            if (row < 2){
+                UIImageView *iconView = (UIImageView*)[cell viewWithTag:101];
+                UILabel *largeTextLabel = (UILabel*)[cell viewWithTag:102];
                 
-                [button setColor:self.view.tintColor forState:UIControlStateNormal];
-                [button setColor:[UIColor greenColor] forState:UIControlStateSelected];
+                iconView.image = [iconView.image rasterizedImageWithTintColor:[UIColor redColor]];
                 
-                UIImage *plus = [[UIImage imageNamed:@"plus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [button setImage:plus forState:UIControlStateNormal];
+                NSString *primaryString;
+                NSString *secondaryString;
                 
-                UIImage *tick = [[UIImage imageNamed:@"tick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-                [button setImage:tick forState:UIControlStateSelected];
+                if (row == 0){
+                    primaryString = [(NSNumber*)_foodProduct[@"calories"] stringValue];
+                    secondaryString = @"kcal";
+                } else if (row == 1){
+                    float distanceToBurnOff = [(NSNumber*)_foodProduct[@"calories"] floatValue] / 81.0;
+                    primaryString = [NSString stringWithFormat:@"%.1f", distanceToBurnOff];
+                    secondaryString = @"km";
+                }
+                NSMutableAttributedString *distanceText = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",primaryString,secondaryString]];
                 
-//                [button addTarget:self action:@selector(toggleStoringCalories) forControlEvents:UIControlEventTouchDown];
+                [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:65]}
+                                      range:NSMakeRange(0, primaryString.length)];
+                [distanceText addAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:17]}
+                                      range:NSMakeRange(primaryString.length, secondaryString.length)];
+                [largeTextLabel setAttributedText:distanceText];
+                
+                if (row == 0){
+                    ToggleButton *button = (ToggleButton*)[cell viewWithTag:107];
+                    button.delegate = self;
+                    button.tintColor = [UIColor whiteColor];
+                    button.layer.cornerRadius = 30;
+                    button.layer.masksToBounds = YES;
+                    
+                    [button setColor:self.view.tintColor forState:UIControlStateNormal];
+                    [button setColor:[UIColor greenColor] forState:UIControlStateSelected];
+                    
+                    UIImage *plus = [[UIImage imageNamed:@"plus"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                    [button setImage:plus forState:UIControlStateNormal];
+                    
+                    UIImage *tick = [[UIImage imageNamed:@"tick"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+                    [button setImage:tick forState:UIControlStateSelected];
+                    
+                    //                [button addTarget:self action:@selector(toggleStoringCalories) forControlEvents:UIControlEventTouchDown];
+                }
+            }else if (row == 2){
+                UILabel *textLabel = (UILabel*)[cell viewWithTag:112];
+                NSLog(@"Setting up alternate food cell");
+                NSString *text = @"If you ate a Carrots and Hummus instead you would save 327kcal (thats 1.4km of running!)";
+                [textLabel setText:text];
             }
             
         }
@@ -340,7 +349,7 @@
     }
 }
 
-- (void) saveFoodDataToHealthKit {
+- (void)saveFoodDataToHealthKit {
     NSDate *now = [NSDate date];
     NSDictionary *metadata = @{ HKMetadataKeyFoodType:_foodProduct[@"productName"] };
     

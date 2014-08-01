@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XnI-Nl-sLg">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -410,6 +409,36 @@
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="altCell" rowHeight="120" id="2Wn-TS-RcD">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Wn-TS-RcD" id="dyX-Cf-3Le">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="healthy-food" translatesAutoresizingMaskIntoConstraints="NO" id="6Ng-GS-NYt" userLabel="Icon">
+                                            <rect key="frame" x="20" y="10" width="100" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="78k-h7-XMa"/>
+                                                <constraint firstAttribute="height" constant="100" id="yNo-FB-THY"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="112" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By eating a meal of Carrots &amp; hummus instead you would save 300kcal (thats 1.4km of running!)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="464" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-vP-0Lh">
+                                            <rect key="frame" x="128" y="20" width="464" height="85"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="6Ng-GS-NYt" secondAttribute="centerY" id="0AZ-qb-9HM"/>
+                                        <constraint firstItem="vHw-vP-0Lh" firstAttribute="leading" secondItem="6Ng-GS-NYt" secondAttribute="trailing" constant="8" id="6JF-0b-4QS"/>
+                                        <constraint firstAttribute="trailing" secondItem="vHw-vP-0Lh" secondAttribute="trailing" constant="8" id="Upb-J5-I7S"/>
+                                        <constraint firstItem="vHw-vP-0Lh" firstAttribute="top" secondItem="dyX-Cf-3Le" secondAttribute="top" constant="20" id="XGQ-eK-FEg"/>
+                                        <constraint firstAttribute="bottom" secondItem="vHw-vP-0Lh" secondAttribute="bottom" constant="14" id="hm8-Rj-zfy"/>
+                                        <constraint firstItem="6Ng-GS-NYt" firstAttribute="leading" secondItem="dyX-Cf-3Le" secondAttribute="leading" constant="20" symbolic="YES" id="wwD-hk-roM"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="runningCell" rowHeight="120" id="8gh-vA-wov">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -434,8 +463,8 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="752" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xC-ot-yyx">
-                                            <rect key="frame" x="88" y="31" width="142" height="88"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="752" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1xC-ot-yyx">
+                                            <rect key="frame" x="88" y="31" width="97" height="88"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="67" id="0Fa-1O-Sei"/>
                                             </constraints>
@@ -497,7 +526,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NiA-wV-AMg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="892"/>
+            <point key="canvasLocation" x="1249" y="891"/>
         </scene>
         <!--Product Data Entry Table View Controller-->
         <scene sceneID="5k9-k8-bLi">
@@ -622,6 +651,7 @@
     <resources>
         <image name="Barcode" width="150" height="102"/>
         <image name="graph" width="60" height="60"/>
+        <image name="healthy-food" width="100" height="100"/>
         <image name="plus" width="40" height="40"/>
         <image name="runner" width="60" height="60"/>
     </resources>
