@@ -415,15 +415,15 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Wn-TS-RcD" id="dyX-Cf-3Le">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="healthy-food" translatesAutoresizingMaskIntoConstraints="NO" id="6Ng-GS-NYt" userLabel="Icon">
-                                            <rect key="frame" x="20" y="10" width="100" height="100"/>
+                                        <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="healthy" translatesAutoresizingMaskIntoConstraints="NO" id="6Ng-GS-NYt" userLabel="Icon">
+                                            <rect key="frame" x="20" y="30" width="60" height="60"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="100" id="78k-h7-XMa"/>
-                                                <constraint firstAttribute="height" constant="100" id="yNo-FB-THY"/>
+                                                <constraint firstAttribute="width" constant="60" id="78k-h7-XMa"/>
+                                                <constraint firstAttribute="height" constant="60" id="yNo-FB-THY"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="112" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By eating a meal of Carrots &amp; hummus instead you would save 300kcal (thats 1.4km of running!)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="464" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-vP-0Lh">
-                                            <rect key="frame" x="128" y="20" width="464" height="85"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="112" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By eating a meal of Carrots &amp; hummus instead you would save 300kcal (thats 1.4km of running!)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" preferredMaxLayoutWidth="504" translatesAutoresizingMaskIntoConstraints="NO" id="vHw-vP-0Lh">
+                                            <rect key="frame" x="88" y="20" width="504" height="85"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -651,7 +651,7 @@
     <resources>
         <image name="Barcode" width="150" height="102"/>
         <image name="graph" width="60" height="60"/>
-        <image name="healthy-food" width="100" height="100"/>
+        <image name="healthy" width="100" height="100"/>
         <image name="plus" width="40" height="40"/>
         <image name="runner" width="60" height="60"/>
     </resources>

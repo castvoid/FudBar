@@ -10,7 +10,6 @@
 		4A26C2221988F912004D5BBD /* UIImage+resizeAndCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A26C2211988F912004D5BBD /* UIImage+resizeAndCrop.m */; };
 		4A27675E198B9E0A005AB834 /* AAPLJournalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A27675D198B9E0A005AB834 /* AAPLJournalViewController.m */; };
 		4A276761198B9E28005AB834 /* AAPLFoodItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A276760198B9E28005AB834 /* AAPLFoodItem.m */; };
-		4A4B7E781989764300FAFCD8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4B7E771989764300FAFCD8 /* StoreKit.framework */; };
 		4A537A191986F398005AF75C /* UIButtonWithTextUnderImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */; };
 		4A8722AC19868435001C544A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AB19868435001C544A /* main.m */; };
 		4A8722AF19868435001C544A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A8722AE19868435001C544A /* AppDelegate.m */; };
@@ -57,7 +56,6 @@
 		4A27675D198B9E0A005AB834 /* AAPLJournalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLJournalViewController.m; sourceTree = "<group>"; };
 		4A27675F198B9E28005AB834 /* AAPLFoodItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLFoodItem.h; sourceTree = "<group>"; };
 		4A276760198B9E28005AB834 /* AAPLFoodItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLFoodItem.m; sourceTree = "<group>"; };
-		4A4B7E771989764300FAFCD8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4A537A171986F398005AF75C /* UIButtonWithTextUnderImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButtonWithTextUnderImage.h; sourceTree = "<group>"; };
 		4A537A181986F398005AF75C /* UIButtonWithTextUnderImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButtonWithTextUnderImage.m; sourceTree = "<group>"; };
 		4A8722A619868435001C544A /* FudBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FudBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,7 +108,6 @@
 				4A8722E7198696FB001C544A /* SystemConfiguration.framework in Frameworks */,
 				4A8722E3198696E9001C544A /* Security.framework in Frameworks */,
 				4A8722E1198696E2001C544A /* QuartzCore.framework in Frameworks */,
-				4A4B7E781989764300FAFCD8 /* StoreKit.framework in Frameworks */,
 				4A8722DF198696DD001C544A /* MobileCoreServices.framework in Frameworks */,
 				4A8722DD198696D5001C544A /* libz.dylib in Frameworks */,
 				4A8722DB198696C9001C544A /* CoreLocation.framework in Frameworks */,
@@ -137,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				4AA0148A198A56A50066B3EA /* HealthKit.framework */,
-				4A4B7E771989764300FAFCD8 /* StoreKit.framework */,
 				11ACA597A97A406FA2E0FA53 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -302,7 +298,7 @@
 								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};

@@ -195,10 +195,10 @@
         case 0:
             keys = @[@"productName",@"subtitle"];
             break;
-        case 1:
+        case 2:
             return [self object:_foodProduct doesHaveDataForKey:@"calories"] ? 3 : 0;
             break;
-        case 2:
+        case 1:
             keys = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
             break;
         case 3:
@@ -227,7 +227,7 @@
             
             break;
         }
-        case 1: { // Running distance
+        case 2: { // Running distance
             
             NSString *reuseID = @[@"loggingCell",@"runningCell",@"altCell"][row];
             cell = [tableView dequeueReusableCellWithIdentifier:reuseID forIndexPath:indexPath];
@@ -278,13 +278,13 @@
             }else if (row == 2){
                 UILabel *textLabel = (UILabel*)[cell viewWithTag:112];
                 NSLog(@"Setting up alternate food cell");
-                NSString *text = @"If you ate a Carrots and Hummus instead you would save 327kcal (thats 1.4km of running!)";
+                NSString *text = @"Eating Carrots and Hummus instead would save you 327kcal (thats 1.4km of running!)";
                 [textLabel setText:text];
             }
             
         }
             
-        case 2: { // Nutrition Info
+        case 1: { // Nutrition Info
             
             NSArray *fields = @[@"calories",@"carbohydrates",@"fats",@"saturates",@"sugars",@"salt"];
             NSArray *units = @[@"kcal",@"g",@"g",@"g",@"g",@"g"];
@@ -336,7 +336,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
-        case 2: // If not available, do not display...
+        case 1: // If not available, do not display...
             return @"Nutritional Information";
             
         case 3:
@@ -347,6 +347,10 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0 || indexPath.section == 1 ) return 44;
+    return 120;
+}
 
 #pragma mark - Other methods
 
@@ -359,6 +363,7 @@
 }
 
 - (void)saveFoodDataToHealthKit {
+    [self removeFoodDataFromHealthKit];
     NSDate *now = [NSDate date];
     NSDictionary *metadata = @{ HKMetadataKeyFoodType:_foodProduct[@"productName"] };
     
@@ -370,7 +375,7 @@
     [self.healthStore saveObject:calorieSample withCompletion:^(BOOL success, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (success) {
-                NSLog(@"Stored food object ot HealthKit!");
+                NSLog(@"Stored food object to HealthKit!");
                 [self.savedObjects addObject:calorieSample];
             }
             else {
@@ -390,6 +395,7 @@
             NSLog(@"Didn't remove nil object from HealthKit.");
         }
     }
+    [self.savedObjects removeAllObjects];
 }
 
 - (void)productInfoEntryCompleteForObject:(PFObject *)object {

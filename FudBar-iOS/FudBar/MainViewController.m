@@ -126,7 +126,7 @@
 - (IBAction)testBarCodeButtonPressed:(id)sender {
     _barcodeLabel.text = _currentBarCode;
     scannerState = kReadyToScan;
-    [self showProductInfoForBarcode:@"offline-1" animated:YES];
+    [self showProductInfoForBarcode:@"50054039" animated:YES];
 }
 
 

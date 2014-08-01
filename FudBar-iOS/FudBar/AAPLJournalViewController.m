@@ -124,26 +124,9 @@ NSString *const AAPLJournalViewControllerTableViewCellReuseIdentifier = @"cell";
 
     cell.textLabel.text = foodItem.name;
 
-    NSEnergyFormatter *energyFormatter = [self energyFormatter];
-    cell.detailTextLabel.text = [energyFormatter stringFromJoules:foodItem.joules];
+    double kCalories = (foodItem.joules * 0.239005736) / 1000;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0fkcal",kCalories];
 
     return cell;
 }
-
-#pragma mark - Convenience
-
-- (NSEnergyFormatter *)energyFormatter {
-    static NSEnergyFormatter *energyFormatter;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        energyFormatter = [[NSEnergyFormatter alloc] init];
-        energyFormatter.unitStyle = NSFormattingUnitStyleLong;
-        energyFormatter.forFoodEnergyUse = YES;
-        energyFormatter.numberFormatter.maximumFractionDigits = 2;
-    });
-    
-    return energyFormatter;
-}
-
 @end
