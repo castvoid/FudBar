@@ -15,7 +15,7 @@
 @interface ProductInfoViewController ()
 
 @property (nonatomic) HKHealthStore *healthStore;
-@property (nonatomic) HKObject *savedObject;
+@property (nonatomic) NSMutableSet *savedObjects;
 
 @end
 
@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadFoodProductForBarcode:_barcode];
-    _savedObject = nil;
+    _savedObjects = [[NSMutableSet alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -332,41 +332,49 @@
 
 #pragma mark - Other methods
 
-- (void)toggleButtonPressed: (UIButton*)button{
+- (void)toggleButtonPressed: (UIButton*)button {
     if (button.selected){
-        HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
-        
-        HKQuantity *quantity = [HKQuantity quantityWithUnit:[HKUnit calorieUnit] doubleValue:[_foodProduct[@"calories"] floatValue]*1000];
-        
-        NSDate *now = [NSDate date];
-        
-        NSDictionary *metadata = @{ HKMetadataKeyFoodType:_foodProduct[@"productName"] };
-        
-        HKQuantitySample *calorieSample = [HKQuantitySample quantitySampleWithType:quantityType quantity:quantity startDate:now endDate:now metadata:metadata];
-        
-        [self.healthStore saveObject:calorieSample withCompletion:^(BOOL success, NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (success) {
-                    NSLog(@"Stored food object ot HealthKit!");
-                    self.savedObject = calorieSample;
-                }
-                else {
-                    NSLog(@"An error occured saving the food %@. In your app, try to handle this gracefully. The error was: %@.", _foodProduct[@"productName"], error);
-                }
-            });
-        }];
-        
+        [self saveFoodDataToHealthKit];
     }else{
-        if (self.savedObject != nil){
-            [self.healthStore deleteObject:self.savedObject withCompletion:^(BOOL success, NSError *error) {
-                self.savedObject = nil;
-                NSLog(@"Removed object from healthkit.");
+        [self removeFoodDataFromHealthKit];
+    }
+}
+
+- (void) saveFoodDataToHealthKit {
+    NSDate *now = [NSDate date];
+    NSDictionary *metadata = @{ HKMetadataKeyFoodType:_foodProduct[@"productName"] };
+    
+    
+    HKQuantityType *quantityType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryEnergyConsumed];
+    HKQuantity *quantity = [HKQuantity quantityWithUnit:[HKUnit calorieUnit] doubleValue:[_foodProduct[@"calories"] floatValue]*1000];
+    HKQuantitySample *calorieSample = [HKQuantitySample quantitySampleWithType:quantityType quantity:quantity startDate:now endDate:now metadata:metadata];
+    
+    [self.healthStore saveObject:calorieSample withCompletion:^(BOOL success, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                NSLog(@"Stored food object ot HealthKit!");
+                [self.savedObjects addObject:calorieSample];
+            }
+            else {
+                NSLog(@"An error occured saving the food %@. In your app, try to handle this gracefully. The error was: %@.", _foodProduct[@"productName"], error);
+            }
+        });
+    }];
+}
+
+- (void)removeFoodDataFromHealthKit{
+    for (HKObject* object in self.savedObjects){
+        if (object != nil){
+            [self.healthStore deleteObject:object withCompletion:^(BOOL success, NSError *error) {
+                NSLog(@"Removed HKObject %@ from HealthKit.", object.UUID);
             }];
+        }else{
+            NSLog(@"Didn't remove nil object from HealthKit.");
         }
     }
 }
 
-- (void)productInfoEntryCompleteForObject:(PFObject *)object{
+- (void)productInfoEntryCompleteForObject:(PFObject *)object {
     NSLog(@"Updating product info");
     _foodProduct = object;
     [self updateTableWithFoodProduct:object];
