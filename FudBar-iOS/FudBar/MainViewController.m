@@ -104,6 +104,7 @@
     [self updateCalorieCount];
 }
 
+
 #pragma mark - UIView methods
 
 - (void)updateCalorieCount{
@@ -125,8 +126,9 @@
 - (IBAction)testBarCodeButtonPressed:(id)sender {
     _barcodeLabel.text = _currentBarCode;
     scannerState = kReadyToScan;
-    [self showProductInfoForBarcode:@"50054039" animated:YES];
+    [self showProductInfoForBarcode:@"offline-1" animated:YES];
 }
+
 
 #pragma mark - Barcode methods
 

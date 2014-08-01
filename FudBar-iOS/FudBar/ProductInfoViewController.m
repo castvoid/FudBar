@@ -19,7 +19,9 @@
 
 @end
 
-@implementation ProductInfoViewController
+@implementation ProductInfoViewController {
+    BOOL offline;
+}
 
 #pragma mark - UIViewController Methods
 
@@ -61,6 +63,10 @@
     if (_barcode.length >= 4 && [[_barcode substringToIndex:4] isEqualToString:@"noDB"]){
         [self showProductEntryViewControllerForBarcode:_barcode];
         return;
+    }else if (_barcode.length >= 7 && [[_barcode substringToIndex:4] isEqualToString:@"offline"]){
+        offline = YES;
+        PFObject *object = [[PFObject alloc] initWithClassName:@"FoodProduct"];
+        [self updateTableWithFoodProduct:object];
     }
     
     PFQuery *query =  [PFQuery queryWithClassName:@"FoodProduct"];
@@ -140,12 +146,15 @@
 
 - (void)updateTableWithFoodProduct: (PFObject*) object{
     _foodProduct = object;
-    PFFile *imageFile = _foodProduct[@"image"];
-    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        NSLog(@"Got image data");
-        productImage = [UIImage imageWithData:data];
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }];
+    
+    if (!offline){
+        PFFile *imageFile = _foodProduct[@"image"];
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            NSLog(@"Got image data");
+            productImage = [UIImage imageWithData:data];
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:2]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }];
+    }
     [[self tableView] reloadData];
     
 }
@@ -400,6 +409,8 @@
 }
 
 - (BOOL)object:(PFObject*)object doesHaveDataForKey:(NSString*)key{
+    if (offline) return YES;
+    
     id data = object[key];
     
     if (data == nil) return NO;
