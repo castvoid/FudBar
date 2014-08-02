@@ -62,7 +62,7 @@
                                   },
                           @"drinks":@{
                                   @"Green Tea": @0,
-                                  @"Orange Juice":@45,
+                                  @"fresh Orange Juice":@45,
                                   @"an Iced Tea":@90
                                   }
                           };
