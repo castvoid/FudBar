@@ -14,7 +14,7 @@
     NSMutableArray *results = [[NSMutableArray alloc] init];
     
     NSArray *keys = self.allKeys;
-//    NSLog(@"KEYS: %@",[keys description]);
+    NSLog(@"KEYS: %@",[keys description]);
     
     for (NSObject* key in keys){
         NSObject *object = [self objectForKey:key];

@@ -124,9 +124,11 @@
 }
 
 - (IBAction)testBarCodeButtonPressed:(id)sender {
+    NSInteger tag = [(UIView*)sender tag];
+    NSString *barcode = tag == 1 ? @"50054039" : @"51000005";
     _barcodeLabel.text = _currentBarCode;
     scannerState = kReadyToScan;
-    [self showProductInfoForBarcode:@"50054039" animated:YES];
+    [self showProductInfoForBarcode:barcode animated:YES];
 }
 
 

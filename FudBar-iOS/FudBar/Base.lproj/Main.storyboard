@@ -108,13 +108,26 @@
                                     <constraint firstAttribute="width" constant="10" id="gAO-0k-ZJq"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvO-qp-jkJ">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lbo-fO-XcO">
+                                <rect key="frame" x="375" y="570" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dUo-Od-L37"/>
+                                    <constraint firstAttribute="width" constant="97" id="zDP-E5-Hdv"/>
+                                </constraints>
+                                <state key="normal" title="1">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="testBarCodeButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3UK-7c-aX5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uvO-qp-jkJ">
                                 <rect key="frame" x="480" y="570" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="TDT-bf-gtL"/>
                                     <constraint firstAttribute="height" constant="30" id="lpK-sQ-OUP"/>
                                 </constraints>
-                                <state key="normal" title="Use Test barcode">
+                                <state key="normal" title="2">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -126,10 +139,12 @@
                         <constraints>
                             <constraint firstItem="0Zw-4t-3W0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="X7l-bA-dCB" secondAttribute="bottom" id="2f7-kx-pNh"/>
                             <constraint firstItem="X7l-bA-dCB" firstAttribute="top" secondItem="qV0-8u-pYh" secondAttribute="bottom" constant="20" id="3V8-Zd-fSh"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Lbo-fO-XcO" secondAttribute="bottom" id="4t3-Gt-ssN"/>
                             <constraint firstAttribute="centerX" secondItem="qV0-8u-pYh" secondAttribute="centerX" id="5JC-Ig-9tl"/>
                             <constraint firstAttribute="centerX" secondItem="HIl-Fc-snr" secondAttribute="centerX" id="Ild-XO-G41"/>
                             <constraint firstAttribute="trailing" secondItem="0Zw-4t-3W0" secondAttribute="trailing" constant="20" id="KXZ-vy-FS4"/>
                             <constraint firstItem="qiG-97-nes" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Mk0-37-4YX"/>
+                            <constraint firstItem="uvO-qp-jkJ" firstAttribute="leading" secondItem="Lbo-fO-XcO" secondAttribute="trailing" constant="8" id="OpE-ua-dC0"/>
                             <constraint firstAttribute="centerX" secondItem="Nap-Ob-RGF" secondAttribute="centerX" id="Ufl-aS-LFc"/>
                             <constraint firstAttribute="centerY" secondItem="X7l-bA-dCB" secondAttribute="centerY" id="UzF-Q0-k53"/>
                             <constraint firstItem="Nap-Ob-RGF" firstAttribute="centerY" secondItem="0Zw-4t-3W0" secondAttribute="centerY" id="b7s-e2-Rxh"/>
@@ -651,7 +666,7 @@
     <resources>
         <image name="Barcode" width="150" height="102"/>
         <image name="graph" width="60" height="60"/>
-        <image name="healthy" width="100" height="100"/>
+        <image name="healthy" width="60" height="60"/>
         <image name="plus" width="40" height="40"/>
         <image name="runner" width="60" height="60"/>
     </resources>
